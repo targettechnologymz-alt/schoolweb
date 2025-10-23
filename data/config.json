@@ -1,0 +1,35 @@
+{
+  "site": {
+    "nome": "Arquivo Acadêmico Central",
+    "descricao": "Exames, Materiais de Estudo e Recursos Educacionais",
+    "versao": "1.0.0",
+    "autor": "maroon-technology"
+  },
+  "configuracoes": {
+    "itensPorPagina": 20,
+    "habilitarCache": true,
+    "modoManutencao": false
+  },
+  "categorias": {
+    "ciencias": {
+      "nome": "Ciências",
+      "cor": "#3498db",
+      "icone": "fa-flask"
+    },
+    "letras": {
+      "nome": "Letras",
+      "cor": "#f39c12",
+      "icone": "fa-book"
+    },
+    "artes": {
+      "nome": "Artes",
+      "cor": "#9b59b6",
+      "icone": "fa-palette"
+    },
+    "tecnologia": {
+      "nome": "Tecnologia",
+      "cor": "#1abc9c",
+      "icone": "fa-laptop-code"
+    }
+  }
+}
