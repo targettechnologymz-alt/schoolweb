@@ -1,78 +1,94 @@
-// Estatísticas do site
-const estatisticas = {
-    totalDocumentos: 0,
-    totalDisciplinas: 0,
-    totalVideos: 0,
-    totalAnos: 0
-};
+// Sistema de Estatísticas
+class EstatisticasSystem {
+    constructor() {
+        this.init();
+    }
 
-// Inicializar estatísticas
-function inicializarEstatisticas() {
-    calcularEstatisticas();
-    animarEstatisticas();
-}
+    init() {
+        this.inicializarEstatisticas();
+    }
 
-// Calcular estatísticas
-function calcularEstatisticas() {
-    // Combinar todos os materiais
-    const todosMateriais = [...materiais.exames, ...materiais.materiais];
-    
-    // Calcular totais
-    estatisticas.totalDocumentos = todosMateriais.length;
-    
-    // Disciplinas únicas
-    const disciplinas = new Set(todosMateriais.map(item => item.disciplina));
-    estatisticas.totalDisciplinas = disciplinas.size;
-    
-    // Vídeos
-    estatisticas.totalVideos = materiais.materiais.filter(item => item.tipo === 'video').length;
-    
-    // Anos únicos
-    const anos = new Set(todosMateriais.map(item => item.ano));
-    estatisticas.totalAnos = anos.size;
-}
+    // Inicializar estatísticas
+    inicializarEstatisticas() {
+        const container = document.getElementById('estatisticas');
+        if (!container) return;
 
-// Animar estatísticas
-function animarEstatisticas() {
-    const elementos = [
-        { id: 'estatistica-documentos', valor: estatisticas.totalDocumentos },
-        { id: 'estatistica-disciplinas', valor: estatisticas.totalDisciplinas },
-        { id: 'estatistica-videos', valor: estatisticas.totalVideos },
-        { id: 'estatistica-anos', valor: estatisticas.totalAnos }
-    ];
+        const stats = this.calcularEstatisticas();
+        
+        container.innerHTML = this.criarHTMLEstatisticas();
+        this.animarEstatisticas(stats);
+    }
 
-    // Criar elementos de estatística
-    const container = document.getElementById('estatisticas');
-    container.innerHTML = elementos.map(item => `
-        <div class="estatistica-item">
-            <div class="estatistica-numero" id="${item.id}">0</div>
-            <div class="estatistica-texto">${formatarTextoEstatistica(item.id)}</div>
-        </div>
-    `).join('');
+    // Calcular estatísticas
+    calcularEstatisticas() {
+        const materiais = mainSystem.materiais;
+        const totalDocumentos = materiais.length;
+        const instituicoesUnicas = new Set(materiais.map(m => m.instituicao)).size;
+        const totalVisualizacoes = materiais.reduce((acc, m) => acc + (m.visualizacoes || 0), 0);
+        const anosUnicos = new Set(materiais.map(m => m.ano)).size;
+        
+        return {
+            totalDocumentos,
+            totalInstituicoes: instituicoesUnicas,
+            totalVisualizacoes,
+            totalAnos: anosUnicos
+        };
+    }
 
-    // Animar números
-    elementos.forEach(item => {
-        const elemento = document.getElementById(item.id);
+    // Criar HTML das estatísticas
+    criarHTMLEstatisticas() {
+        return `
+            <div class="estatistica-item">
+                <div class="estatistica-numero" id="estatistica-documentos">0</div>
+                <div class="estatistica-texto">Documentos Disponíveis</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero" id="estatistica-instituicoes">0</div>
+                <div class="estatistica-texto">Instituições</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero" id="estatistica-visualizacoes">0</div>
+                <div class="estatistica-texto">Visualizações</div>
+            </div>
+            <div class="estatistica-item">
+                <div class="estatistica-numero" id="estatistica-anos">0</div>
+                <div class="estatistica-texto">Anos de Conteúdo</div>
+            </div>
+        `;
+    }
+
+    // Animar números das estatísticas
+    animarEstatisticas(stats) {
+        this.animarNumero('estatistica-documentos', stats.totalDocumentos);
+        this.animarNumero('estatistica-instituicoes', stats.totalInstituicoes);
+        this.animarNumero('estatistica-visualizacoes', stats.totalVisualizacoes);
+        this.animarNumero('estatistica-anos', stats.totalAnos);
+    }
+
+    // Animar número individual
+    animarNumero(id, valorFinal) {
+        const elemento = document.getElementById(id);
+        if (!elemento) return;
+
         let contador = 0;
-        const incremento = Math.ceil(item.valor / 50);
+        const incremento = Math.ceil(valorFinal / 50);
         const intervalo = setInterval(() => {
             contador += incremento;
-            if (contador >= item.valor) {
-                contador = item.valor;
+            if (contador >= valorFinal) {
+                contador = valorFinal;
                 clearInterval(intervalo);
             }
-            elemento.textContent = contador;
+            elemento.textContent = contador.toLocaleString('pt-PT');
         }, 30);
-    });
+    }
+
+    // Atualizar estatísticas (chamado pelo admin)
+    atualizarEstatisticas() {
+        this.inicializarEstatisticas();
+    }
 }
 
-// Formatar texto da estatística
-function formatarTextoEstatistica(id) {
-    const textos = {
-        'estatistica-documentos': 'Documentos Disponíveis',
-        'estatistica-disciplinas': 'Disciplinas',
-        'estatistica-videos': 'Vídeos Educativos',
-        'estatistica-anos': 'Anos de Conteúdo'
-    };
-    return textos[id] || id;
-}
+// Inicializar sistema de estatísticas
+document.addEventListener('DOMContentLoaded', function() {
+    window.estatisticasSystem = new EstatisticasSystem();
+});

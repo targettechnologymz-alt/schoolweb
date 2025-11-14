@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo Acadêmico Central - Exames, Manuais e Resumos de Estudo</title>
+
+    <!-- ✅ SEO -->
+    <meta name="description" content="Baixe exames, manuais e resumos acadêmicos de todas as classes e disciplinas. Arquivo Acadêmico Central - o seu portal de estudo.">
+    <meta name="keywords" content="exames moçambique, manuais, resumos, materiais de estudo, educação, PDF escolar, ensino médio, faculdade">
+    <meta name="author" content="Maroon Technology">
+    <meta name="robots" content="index, follow">
+
+    <!-- ✅ Open Graph / Redes Sociais -->
+    <meta property="og:title" content="Arquivo Acadêmico Central - Materiais de Estudo em PDF">
+    <meta property="og:description" content="Portal educacional com exames, manuais e resumos para alunos e professores.">
+    <meta property="og:image" content="https://targettechnologymz-alt.github.io/schoolweb/img/preview.png">
+    <meta property="og:url" content="https://targettechnologymz-alt.github.io/schoolweb/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- ✅ Favicon -->
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <!-- ✅ Estilos -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ✅ Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1885724199927881"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <i class="fas fa-graduation-cap"></i><h1>ARQUIVO ACADÊMICO CENTRAL</h1>
+            <p>Exames, Manuais, Resumos e Recursos Educacionais</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- 🟢 Anúncio Topo -->
+        <div class="adsense-placeholder">
+            <ins class="adsbygoogle"
+                style="display:block; text-align:center;"
+                data-ad-client="ca-pub-1885724199927881"
+                data-ad-slot="5214728394"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Estatísticas -->
+        <section class="estatisticas" id="estatisticas"></section>
+
+        <!-- Filtros -->
+        <section class="filtros">
+            <div class="filtro-grupo">
+                <label for="area-filtro"><i class="fas fa-layer-group"></i> Área:</label>
+                <select id="area-filtro"><option value="todos">Todas as Áreas</option></select>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="classe-filtro"><i class="fas fa-user-graduate"></i> Classe:</label>
+                <select id="classe-filtro"><option value="todos">Todas as Classes</option></select>
+            </div>
+
+            <div class="filtro-grupo">
+                <label for="disciplina-filtro"><i class="fas fa-book"></i> Disciplina:</label>
+                <select id="disciplina-filtro"><option value="todos">Todas as Disciplinas</option></select>
+            </div>
+            
+            <div class="filtro-grupo">
+                <label for="ano-filtro"><i class="fas fa-calendar-alt"></i> Ano:</label>
+                <select id="ano-filtro"><option value="todos">Todos os Anos</option></select>
+            </div>
+            
+            <button class="btn-limpar" id="btn-limpar">
+                <i class="fas fa-times"></i> Limpar Filtros
+            </button>
+        </section>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Carregando conteúdo...</p>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <main id="conteudo-principal"></main>
+        
+        <!-- 🟢 Anúncio no meio da página -->
+        <div class="adsense-placeholder">
+            <ins class="adsbygoogle"
+                style="display:block; text-align:center;"
+                data-ad-client="ca-pub-1885724199927881"
+                data-ad-slot="8123495123"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>Arquivo Acadêmico Central &copy; 2024 - Todos os direitos reservados</p>
+            <div class="assinatura">
+                <i class="fas fa-code"></i>
+                <span>Criado por <strong>Maroon Technology</strong></span>
+            </div>
+
+            <!-- 🟢 Anúncio Rodapé -->
+            <div class="adsense-placeholder">
+                <ins class="adsbygoogle"
+                    style="display:block; text-align:center;"
+                    data-ad-client="ca-pub-1885724199927881"
+                    data-ad-slot="9712348901"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/upload-manager.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/estatisticas.js"></script>
+    <script src="js/filtros.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- ✅ Schema SEO (Google Rich Snippets) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Arquivo Acadêmico Central",
+        "url": "https://targettechnologymz-alt.github.io/schoolweb/",
+        "logo": "https://targettechnologymz-alt.github.io/schoolweb/img/logo.png",
+        "description": "Portal educacional com exames, manuais e resumos para alunos e professores.",
+        "founder": "Maroon Technology",
+        "sameAs": [
+            "https://facebook.com/maroontech",
+            "https://github.com/targettechnologymz-alt"
+        ]
+    }
+    </script>
+</body>
+</html>
+
+
+// Sistema de upload e organização de PDFs
+class UploadManager {
+    constructor() {
+        this.uploadQueue = [];
+        this.isProcessing = false;
+    }
+
+    // Interface para adicionar PDFs
+    async adicionarPDFs(arquivos, metadados) {
+        for (const arquivo of arquivos) {
+            if (arquivo.type !== 'application/pdf') {
+                console.warn('⚠️ Arquivo ignorado (não é PDF):', arquivo.name);
+                continue;
+            }
+
+            this.uploadQueue.push({
+                arquivo,
+                metadados: {
+                    ...metadados,
+                    nomeOriginal: arquivo.name,
+                    tamanho: this.formatarTamanho(arquivo.size),
+                    dataUpload: new Date().toISOString()
+                }
+            });
+        }
+
+        if (!this.isProcessing) {
+            this.processarFila();
+        }
+    }
+
+    // Processar fila de uploads
+    async processarFila() {
+        if (this.uploadQueue.length === 0) {
+            this.isProcessing = false;
+            return;
+        }
+
+        this.isProcessing = true;
+        const item = this.uploadQueue.shift();
+
+        try {
+            await this.processarArquivo(item);
+            console.log(`✅ PDF processado: ${item.metadados.nomeOriginal}`);
+        } catch (error) {
+            console.error(`❌ Erro ao processar ${item.metadados.nomeOriginal}:`, error);
+        }
+
+        // Processar próximo item
+        setTimeout(() => this.processarFila(), 100);
+    }
+
+    // Processar arquivo individual
+    async processarArquivo(item) {
+        // Em ambiente real, aqui você faria upload para servidor
+        // Por enquanto, vamos simular o processamento
+        
+        const caminho = this.gerarCaminho(item.metadados);
+        const material = {
+            titulo: this.gerarTitulo(item.metadados, item.arquivo.name),
+            area: item.metadados.area,
+            classe: item.metadados.classe,
+            disciplina: item.metadados.disciplina,
+            ano: item.metadados.ano,
+            tipo: item.metadados.tipo,
+            arquivo: caminho,
+            paginas: await this.estimarPaginas(item.arquivo),
+            tamanho: item.metadados.tamanho,
+            categoria: `categoria-${item.metadados.area}`
+        };
+
+        // Adicionar ao sistema
+        pdfLoader.adicionarMaterial(item.metadados.tipo, material);
+        
+        // Em ambiente real: fazer upload do arquivo
+        // await this.fazerUploadArquivo(item.arquivo, caminho);
+    }
+
+    // Gerar caminho do arquivo
+    gerarCaminho(metadados) {
+        const { tipo, classe, disciplina, ano } = metadados;
+        
+        let pastaClasse = 'faculdade';
+        if (classe !== 'faculdade') {
+            pastaClasse = `${classe}-classe`;
+        }
+
+        const nomeArquivo = this.gerarNomeArquivo(metadados);
+        
+        return `documentos/${tipo}s/${pastaClasse}/${disciplina}/${nomeArquivo}.pdf`;
+    }
+
+    // Gerar nome do arquivo
+    gerarNomeArquivo(metadados) {
+        const { tipo, disciplina, classe, ano } = metadados;
+        const timestamp = Date.now();
+        return `${tipo}-${disciplina}-${classe}-${ano}-${timestamp}`;
+    }
+
+    // Gerar título amigável
+    gerarTitulo(metadados, nomeOriginal) {
+        const { tipo, disciplina, classe, ano } = metadados;
+        const nome = nomeOriginal.replace('.pdf', '').replace(/_/g, ' ');
+        
+        const tipos = {
+            'exame': 'Exame',
+            'manual': 'Manual',
+            'resumo': 'Resumo'
+        };
+
+        const classes = {
+            '10': '10ª Classe',
+            '11': '11ª Classe', 
+            '12': '12ª Classe',
+            'faculdade': 'Faculdade'
+        };
+
+        return `${tipos[tipo]} - ${disciplina.charAt(0).toUpperCase() + disciplina.slice(1)} - ${classes[classe]} - ${ano}`;
+    }
+
+    // Estimar número de páginas (simulação)
+    async estimarPaginas(arquivo) {
+        // Em ambiente real, você usaria uma biblioteca PDF.js
+        // Por enquanto, vamos estimar baseado no tamanho
+        const tamanhoMB = arquivo.size / (1024 * 1024);
+        return Math.max(1, Math.round(tamanhoMB * 5));
+    }
+
+    // Formatar tamanho do arquivo
+    formatarTamanho(bytes) {
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        if (bytes === 0) return '0 Bytes';
+        const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    }
+}
+
+// Instância global do upload manager
+const uploadManager = new UploadManager();
+
+// Dados dos materiais (em produção, isso viria de uma API ou JSON)
+const materiais = {
+    "exames": [
+        {
+            "id": 1,
+            "titulo": "Matemática - Exame Final",
+            "area": "ciencias",
+            "classe": "10",
+            "disciplina": "matematica",
+            "ano": "2024",
+            "tipo": "exame",
+            "arquivo": "documentos/exames/10-classe/matematica/exame_2024.pdf",
+            "paginas": 15,
+            "categoria": "categoria-ciencias"
+        },
+        {
+            "id": 2,
+            "titulo": "Português - Exame de Recurso",
+            "area": "letras",
+            "classe": "12",
+            "disciplina": "portugues",
+            "ano": "2023",
+            "tipo": "exame",
+            "arquivo": "documentos/exames/12-classe/portugues/exame_recurso_2023.pdf",
+            "paginas": 12,
+            "categoria": "categoria-letras"
+        },
+        {
+            "id": 3,
+            "titulo": "Física I - Prova 1",
+            "area": "ciencias",
+            "classe": "faculdade",
+            "disciplina": "fisica",
+            "ano": "2022",
+            "tipo": "exame",
+            "arquivo": "documentos/exames/faculdade/fisica/prova_1_2022.pdf",
+            "paginas": 8,
+            "categoria": "categoria-ciencias"
+        }
+    ],
+    "materiais": [
+        {
+            "id": 101,
+            "titulo": "Resumo Completo de Química Orgânica",
+            "area": "ciencias",
+            "classe": "12",
+            "disciplina": "quimica",
+            "ano": "2024",
+            "tipo": "material",
+            "arquivo": "documentos/resumos/ciencias/quimica_organica.pdf",
+            "paginas": 20,
+            "categoria": "categoria-ciencias"
+        },
+        {
+            "id": 102,
+            "titulo": "Análise do Livro Memorial do Convento",
+            "area": "letras",
+            "classe": "12",
+            "disciplina": "portugues",
+            "ano": "2024",
+            "tipo": "video",
+            "url": "https://www.youtube.com/watch?v=EXEMPLO1",
+            "categoria": "categoria-letras"
+        },
+        {
+            "id": 103,
+            "titulo": "Introdução à Programação Python",
+            "area": "tecnologia",
+            "classe": "faculdade",
+            "disciplina": "programacao",
+            "ano": "2024",
+            "tipo": "material",
+            "arquivo": "documentos/manuais/programacao/python_intro.pdf",
+            "paginas": 35,
+            "categoria": "categoria-tecnologia"
+        }
+    ]
+};
+
+// Inicialização do site
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Arquivo Acadêmico - Inicializando...');
+    
+    // Inicializar componentes
+    inicializarFiltros();
+    carregarConteudo();
+    inicializarEstatisticas();
+    
+    // Efeito de digitação no título
+    const titulo = document.querySelector('header h1');
+    const textoOriginal = titulo.innerHTML;
+    titulo.innerHTML = '';
+    
+    let i = 0;
+    const typingEffect = setInterval(() => {
+        if (i < textoOriginal.length) {
+            titulo.innerHTML += textoOriginal.charAt(i);
+            i++;
+        } else {
+            clearInterval(typingEffect);
+        }
+    }, 50);
+});
+
+// Carregar conteúdo na página
+function carregarConteudo() {
+    const conteudoPrincipal = document.getElementById('conteudo-principal');
+    
+    // Seção de Exames
+    const secaoExames = criarSecao('Exames para Download (PDF)', 'exames', 'fa-file-pdf');
+    conteudoPrincipal.appendChild(secaoExames);
+    
+    // Seção de Materiais
+    const secaoMateriais = criarSecao('Materiais de Estudo & Vídeos', 'materiais', 'fa-video');
+    conteudoPrincipal.appendChild(secaoMateriais);
+    
+    // Aplicar filtros iniciais
+    filtrarConteudo();
+}
+
+// Criar seção de conteúdo
+function criarSecao(titulo, tipo, icone) {
+    const secao = document.createElement('section');
+    secao.className = 'secao-conteudo';
+    
+    const tituloSecao = document.createElement('h2');
+    tituloSecao.innerHTML = `<i class="fas ${icone}"></i> ${titulo}`;
+    secao.appendChild(tituloSecao);
+    
+    const listaContainer = document.createElement('div');
+    listaContainer.id = `lista-${tipo}`;
+    listaContainer.className = 'lista-conteudo';
+    secao.appendChild(listaContainer);
+    
+    return secao;
+}
+
+// Carregar itens em uma seção
+function carregarItensSecao(tipo, filtros = {}) {
+    const container = document.getElementById(`lista-${tipo}`);
+    const itensFiltrados = filtrarItens(materiais[tipo], filtros);
+    
+    if (itensFiltrados.length === 0) {
+        container.innerHTML = `
+            <div class="sem-resultados">
+                <i class="fas fa-search"></i>
+                <h3>Nenhum material encontrado</h3>
+                <p>Tente ajustar os filtros para ver mais resultados.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = itensFiltrados.map(item => criarItemHTML(item)).join('');
+}
+
+// Filtrar itens baseado nos filtros
+function filtrarItens(itens, filtros) {
+    return itens.filter(item => {
+        if (filtros.area && filtros.area !== 'todos' && item.area !== filtros.area) return false;
+        if (filtros.classe && filtros.classe !== 'todos' && item.classe !== filtros.classe) return false;
+        if (filtros.disciplina && filtros.disciplina !== 'todos' && item.disciplina !== filtros.disciplina) return false;
+        if (filtros.ano && filtros.ano !== 'todos' && item.ano !== filtros.ano) return false;
+        return true;
+    });
+}
+
+// Criar HTML para um item
+function criarItemHTML(item) {
+    const isVideo = item.tipo === 'video';
+    const botao = isVideo ? 
+        `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-download btn-video">
+            <i class="fas fa-play-circle"></i> Ver Vídeo
+        </a>` :
+        `<a href="${item.arquivo}" target="_blank" rel="noopener noreferrer" class="btn-download">
+            <i class="fas fa-download"></i> Baixar ${item.tipo === 'exame' ? 'PDF' : 'Material'}
+        </a>`;
+    
+    const metaPaginas = item.paginas ? 
+        `<span><i class="fas fa-file-alt"></i> ${item.paginas} páginas</span>` : '';
+    
+    return `
+        <div class="exame-item ${item.categoria}" 
+             data-area="${item.area}" 
+             data-classe="${item.classe}" 
+             data-disciplina="${item.disciplina}" 
+             data-ano="${item.ano}">
+            <div class="exame-info">
+                <div class="exame-titulo">${item.titulo}</div>
+                <div class="exame-meta">
+                    <span><i class="fas fa-layer-group"></i> ${formatarTexto(item.area)}</span>
+                    <span><i class="fas fa-user-graduate"></i> ${formatarClasse(item.classe)}</span>
+                    <span><i class="fas fa-calendar-alt"></i> ${item.ano}</span>
+                    ${metaPaginas}
+                </div>
+            </div>
+            <div class="exame-acoes">
+                ${botao}
+            </div>
+        </div>
+    `;
+}
+
+// Funções auxiliares
+function formatarTexto(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+}
+
+function formatarClasse(classe) {
+    const classes = {
+        '10': '10ª Classe',
+        '11': '11ª Classe',
+        '12': '12ª Classe',
+        'faculdade': 'Faculdade/Universidade'
+    };
+    return classes[classe] || classe;
+}
+
+// Sistema de carregamento automático de PDFs
+class PDFLoader {
+    constructor() {
+        this.materiais = {
+            exames: [],
+            manuais: [],
+            resumos: []
+        };
+        this.basePath = 'documentos/';
+    }
+
+    // Carregar estrutura de PDFs
+    async carregarEstrutura() {
+        try {
+            await this.carregarEstruturaFixa();
+            this.salvarNoLocalStorage();
+            return this.materiais;
+        } catch (error) {
+            console.error('Erro ao carregar estrutura:', error);
+            return this.carregarDoLocalStorage();
+        }
+    }
+
+    // Estrutura fixa dos materiais
+    carregarEstruturaFixa() {
+        this.materiais = {
+            exames: [
+                {
+                    id: 'exame-matematica-10-2024',
+                    titulo: 'Matemática - Exame Final 2024',
+                    area: 'ciencias',
+                    classe: '10',
+                    disciplina: 'matematica',
+                    ano: '2024',
+                    tipo: 'exame',
+                    arquivo: 'documentos/exames/10-classe/matematica/exame-final-2024.pdf',
+                    paginas: 15,
+                    tamanho: '2.4 MB',
+                    categoria: 'categoria-ciencias',
+                    dataUpload: '2024-01-15'
+                },
+                {
+                    id: 'exame-portugues-12-2023',
+                    titulo: 'Português - Exame de Recurso 2023',
+                    area: 'letras',
+                    classe: '12',
+                    disciplina: 'portugues',
+                    ano: '2023',
+                    tipo: 'exame',
+                    arquivo: 'documentos/exames/12-classe/portugues/exame-recurso-2023.pdf',
+                    paginas: 12,
+                    tamanho: '1.8 MB',
+                    categoria: 'categoria-letras',
+                    dataUpload: '2024-01-10'
+                },
+                {
+                    id: 'prova-fisica-facul-2022',
+                    titulo: 'Física I - Prova 1 - 2022',
+                    area: 'ciencias',
+                    classe: 'faculdade',
+                    disciplina: 'fisica',
+                    ano: '2022',
+                    tipo: 'exame',
+                    arquivo: 'documentos/exames/faculdade/fisica/prova-1-2022.pdf',
+                    paginas: 8,
+                    tamanho: '1.2 MB',
+                    categoria: 'categoria-ciencias',
+                    dataUpload: '2024-01-08'
+                }
+            ],
+            manuais: [
+                {
+                    id: 'manual-matematica-2024',
+                    titulo: 'Manual Completo de Matemática - 2024',
+                    area: 'ciencias',
+                    classe: 'todos',
+                    disciplina: 'matematica',
+                    ano: '2024',
+                    tipo: 'manual',
+                    arquivo: 'documentos/manuais/matematica/manual-completo-2024.pdf',
+                    paginas: 45,
+                    tamanho: '5.2 MB',
+                    categoria: 'categoria-ciencias',
+                    dataUpload: '2024-01-20'
+                },
+                {
+                    id: 'guia-redacao-enem',
+                    titulo: 'Guia Completo de Redação ENEM',
+                    area: 'letras',
+                    classe: '12',
+                    disciplina: 'portugues',
+                    ano: '2024',
+                    tipo: 'manual',
+                    arquivo: 'documentos/manuais/portugues/guia-redacao-enem.pdf',
+                    paginas: 32,
+                    tamanho: '3.8 MB',
+                    categoria: 'categoria-letras',
+                    dataUpload: '2024-01-18'
+                }
+            ],
+            resumos: [
+                {
+                    id: 'resumo-quimica-organica',
+                    titulo: 'Resumo Completo - Química Orgânica',
+                    area: 'ciencias',
+                    classe: '12',
+                    disciplina: 'quimica',
+                    ano: '2024',
+                    tipo: 'resumo',
+                    arquivo: 'documentos/resumos/ciencias/resumo-quimica-organica.pdf',
+                    paginas: 25,
+                    tamanho: '2.1 MB',
+                    categoria: 'categoria-ciencias',
+                    dataUpload: '2024-01-22'
+                }
+            ]
+        };
+        
+        return Promise.resolve();
+    }
+
+    // Salvar no localStorage
+    salvarNoLocalStorage() {
+        localStorage.setItem('arquivoAcademico_materiais', JSON.stringify(this.materiais));
+        localStorage.setItem('arquivoAcademico_ultimaAtualizacao', new Date().toISOString());
+    }
+
+    // Carregar do localStorage
+    carregarDoLocalStorage() {
+        const salvos = localStorage.getItem('arquivoAcademico_materiais');
+        if (salvos) {
+            this.materiais = JSON.parse(salvos);
+            console.log('📚 Materiais carregados do cache');
+        }
+        return this.materiais;
+    }
+
+    // Adicionar novo material
+    adicionarMaterial(tipo, material) {
+        material.id = this.gerarID(tipo, material);
+        material.dataUpload = new Date().toISOString().split('T')[0];
+        
+        this.materiais[tipo].push(material);
+        this.salvarNoLocalStorage();
+        
+        console.log(`✅ Material adicionado: ${material.titulo}`);
+        return material.id;
+    }
+
+    // Remover material
+    removerMaterial(id) {
+        const tipos = ['exames', 'manuais', 'resumos'];
+        let removido = false;
+
+        for (const tipo of tipos) {
+            const antes = this.materiais[tipo].length;
+            this.materiais[tipo] = this.materiais[tipo].filter(m => m.id !== id);
+            if (this.materiais[tipo].length < antes) removido = true;
+        }
+
+        if (removido) {
+            this.salvarNoLocalStorage();
+            console.log(`🗑️ Material removido: ${id}`);
+        } else {
+            console.warn(`⚠️ Material com ID ${id} não encontrado.`);
+        }
+    }
+
+    // Gerar ID único
+    gerarID(tipo, material) {
+        return `${tipo}-${material.disciplina}-${material.classe}-${Date.now()}`;
+    }
+
+    // Buscar materiais
+    buscarMateriais(filtros = {}) {
+        const todos = [
+            ...this.materiais.exames,
+            ...this.materiais.manuais,
+            ...this.materiais.resumos
+        ];
+
+        return todos.filter(material => {
+            return Object.keys(filtros).every(chave => material[chave] === filtros[chave]);
+        });
+    }
+
+    // Estatísticas
+    obterEstatisticas() {
+        const todos = this.buscarMateriais();
+        return {
+            totalDocumentos: todos.length,
+            totalExames: this.materiais.exames.length,
+            totalManuais: this.materiais.manuais.length,
+            totalResumos: this.materiais.resumos.length,
+            disciplinas: new Set(todos.map(m => m.disciplina)).size,
+            anos: new Set(todos.map(m => m.ano)).size
+        };
+    }
+}
+
+// Instância global
+const pdfLoader = new PDFLoader();
+export default pdfLoader;
+
+
+// Configuração dos filtros
+const opcoesFiltros = {
+    areas: [
+        { valor: 'todos', texto: 'Todas as Áreas' },
+        { valor: 'ciencias', texto: 'Ciências' },
+        { valor: 'letras', texto: 'Letras' },
+        { valor: 'artes', texto: 'Artes' },
+        { valor: 'tecnologia', texto: 'Tecnologia' }
+    ],
+    classes: [
+        { valor: 'todos', texto: 'Todas as Classes' },
+        { valor: '10', texto: '10ª Classe' },
+        { valor: '11', texto: '11ª Classe' },
+        { valor: '12', texto: '12ª Classe' },
+        { valor: 'faculdade', texto: 'Faculdade/Universidade' }
+    ],
+    disciplinas: [
+        { valor: 'todos', texto: 'Todas as Disciplinas' },
+        { valor: 'matematica', texto: 'Matemática' },
+        { valor: 'portugues', texto: 'Português' },
+        { valor: 'fisica', texto: 'Física' },
+        { valor: 'quimica', texto: 'Química' },
+        { valor: 'biologia', texto: 'Biologia' },
+        { valor: 'historia', texto: 'História' },
+        { valor: 'geografia', texto: 'Geografia' },
+        { valor: 'ingles', texto: 'Inglês' },
+        { valor: 'filosofia', texto: 'Filosofia' },
+        { valor: 'programacao', texto: 'Programação' }
+    ],
+    anos: [
+        { valor: 'todos', texto: 'Todos os Anos' },
+        { valor: '2024', texto: '2024' },
+        { valor: '2023', texto: '2023' },
+        { valor: '2022', texto: '2022' },
+        { valor: '2021', texto: '2021' },
+        { valor: '2020', texto: '2020' }
+    ]
+};
+
+// Inicializar filtros
+function inicializarFiltros() {
+    popularSelect('area-filtro', opcoesFiltros.areas);
+    popularSelect('classe-filtro', opcoesFiltros.classes);
+    popularSelect('disciplina-filtro', opcoesFiltros.disciplinas);
+    popularSelect('ano-filtro', opcoesFiltros.anos);
+    
+    // Event listeners
+    document.getElementById('area-filtro').addEventListener('change', filtrarConteudo);
+    document.getElementById('classe-filtro').addEventListener('change', filtrarConteudo);
+    document.getElementById('disciplina-filtro').addEventListener('change', filtrarConteudo);
+    document.getElementById('ano-filtro').addEventListener('change', filtrarConteudo);
+    document.getElementById('btn-limpar').addEventListener('click', limparFiltros);
+}
+
+// Popular select com opções
+function popularSelect(id, opcoes) {
+    const select = document.getElementById(id);
+    select.innerHTML = opcoes.map(opcao => 
+        `<option value="${opcao.valor}">${opcao.texto}</option>`
+    ).join('');
+}
+
+// Filtrar conteúdo
+function filtrarConteudo() {
+    mostrarLoading();
+    
+    setTimeout(() => {
+        const filtros = {
+            area: document.getElementById('area-filtro').value,
+            classe: document.getElementById('classe-filtro').value,
+            disciplina: document.getElementById('disciplina-filtro').value,
+            ano: document.getElementById('ano-filtro').value
+        };
+        
+        carregarItensSecao('exames', filtros);
+        carregarItensSecao('materiais', filtros);
+        
+        esconderLoading();
+    }, 300);
+}
+
+// Limpar filtros
+function limparFiltros() {
+    document.getElementById('area-filtro').value = 'todos';
+    document.getElementById('classe-filtro').value = 'todos';
+    document.getElementById('disciplina-filtro').value = 'todos';
+    document.getElementById('ano-filtro').value = 'todos';
+    
+    filtrarConteudo();
+}
+
+// Controles de loading
+function mostrarLoading() {
+    document.getElementById('loading').style.display = 'block';
+}
+
+function esconderLoading() {
+    document.getElementById('loading').style.display = 'none';
+}
+
+// Estatísticas do site
+const estatisticas = {
+    totalDocumentos: 0,
+    totalDisciplinas: 0,
+    totalVideos: 0,
+    totalAnos: 0
+};
+
+// Inicializar estatísticas
+function inicializarEstatisticas() {
+    calcularEstatisticas();
+    animarEstatisticas();
+}
+
+// Calcular estatísticas
+function calcularEstatisticas() {
+    // Combinar todos os materiais
+    const todosMateriais = [...materiais.exames, ...materiais.materiais];
+    
+    // Calcular totais
+    estatisticas.totalDocumentos = todosMateriais.length;
+    
+    // Disciplinas únicas
+    const disciplinas = new Set(todosMateriais.map(item => item.disciplina));
+    estatisticas.totalDisciplinas = disciplinas.size;
+    
+    // Vídeos
+    estatisticas.totalVideos = materiais.materiais.filter(item => item.tipo === 'video').length;
+    
+    // Anos únicos
+    const anos = new Set(todosMateriais.map(item => item.ano));
+    estatisticas.totalAnos = anos.size;
+}
+
+// Animar estatísticas
+function animarEstatisticas() {
+    const elementos = [
+        { id: 'estatistica-documentos', valor: estatisticas.totalDocumentos },
+        { id: 'estatistica-disciplinas', valor: estatisticas.totalDisciplinas },
+        { id: 'estatistica-videos', valor: estatisticas.totalVideos },
+        { id: 'estatistica-anos', valor: estatisticas.totalAnos }
+    ];
+
+    // Criar elementos de estatística
+    const container = document.getElementById('estatisticas');
+    container.innerHTML = elementos.map(item => `
+        <div class="estatistica-item">
+            <div class="estatistica-numero" id="${item.id}">0</div>
+            <div class="estatistica-texto">${formatarTextoEstatistica(item.id)}</div>
+        </div>
+    `).join('');
+
+    // Animar números
+    elementos.forEach(item => {
+        const elemento = document.getElementById(item.id);
+        let contador = 0;
+        const incremento = Math.ceil(item.valor / 50);
+        const intervalo = setInterval(() => {
+            contador += incremento;
+            if (contador >= item.valor) {
+                contador = item.valor;
+                clearInterval(intervalo);
+            }
+            elemento.textContent = contador;
+        }, 30);
+    });
+}
+
+// Formatar texto da estatística
+function formatarTextoEstatistica(id) {
+    const textos = {
+        'estatistica-documentos': 'Documentos Disponíveis',
+        'estatistica-disciplinas': 'Disciplinas',
+        'estatistica-videos': 'Vídeos Educativos',
+        'estatistica-anos': 'Anos de Conteúdo'
+    };
+    return textos[id] || id;
+}
+
+// Sistema de autenticação administrativa
+class AuthSystem {
+    constructor() {
+        this.adminPassword = 'abernateamo2023'; // Senha padrão - altere isso!
+        this.isAuthenticated = false;
+        this.sessionTimeout = 30 * 60 * 1000; // 30 minutos
+        this.init();
+    }
+
+    init() {
+        this.verificarSessao();
+        this.criarModalLogin();
+    }
+
+    // Criar modal de login
+    criarModalLogin() {
+        const modalHTML = `
+            <div id="login-modal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-lock"></i> Acesso Administrativo</h3>
+                        <button class="btn-fechar" onclick="authSystem.fecharLogin()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="login-password">Senha de Administrador:</label>
+                            <input type="password" id="login-password" placeholder="Digite a senha" class="form-input">
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-secondary" onclick="authSystem.fecharLogin()">Cancelar</button>
+                            <button class="btn btn-primary" onclick="authSystem.fazerLogin()">Entrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    // Verificar sessão existente
+    verificarSessao() {
+        const sessao = localStorage.getItem('admin_session');
+        if (sessao) {
+            const { timestamp, hash } = JSON.parse(sessao);
+            const agora = Date.now();
+            
+            if (agora - timestamp < this.sessionTimeout) {
+                const verificarHash = this.gerarHash(this.adminPassword + timestamp);
+                if (verificarHash === hash) {
+                    this.isAuthenticated = true;
+                    this.iniciarTimeoutSessao();
+                    return true;
+                }
+            }
+        }
+        
+        this.isAuthenticated = false;
+        localStorage.removeItem('admin_session');
+        return false;
+    }
+
+    // Fazer login
+    fazerLogin() {
+        const password = document.getElementById('login-password').value;
+        
+        if (password === this.adminPassword) {
+            this.isAuthenticated = true;
+            const timestamp = Date.now();
+            const hash = this.gerarHash(password + timestamp);
+            
+            localStorage.setItem('admin_session', JSON.stringify({
+                timestamp,
+                hash
+            }));
+            
+            this.fecharLogin();
+            this.iniciarTimeoutSessao();
+            adminInterface.abrir();
+            
+            console.log('🔓 Acesso administrativo concedido');
+        } else {
+            alert('❌ Senha incorreta!');
+            document.getElementById('login-password').value = '';
+        }
+    }
+
+    // Fazer logout
+    fazerLogout() {
+        this.isAuthenticated = false;
+        localStorage.removeItem('admin_session');
+        adminInterface.fechar();
+        console.log('🔒 Sessão administrativa encerrada');
+    }
+
+    // Verificar autenticação
+    verificarAuth() {
+        if (!this.isAuthenticated) {
+            this.abrirLogin();
+            return false;
+        }
+        return true;
+    }
+
+    // Abrir modal de login
+    abrirLogin() {
+        document.getElementById('login-modal').style.display = 'block';
+        document.getElementById('login-password').focus();
+    }
+
+    // Fechar modal de login
+    fecharLogin() {
+        document.getElementById('login-modal').style.display = 'none';
+        document.getElementById('login-password').value = '';
+    }
+
+    // Gerar hash simples
+    gerarHash(text) {
+        let hash = 0;
+        for (let i = 0; i < text.length; i++) {
+            const char = text.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return hash.toString();
+    }
+
+    // Iniciar timeout da sessão
+    iniciarTimeoutSessao() {
+        setTimeout(() => {
+            if (this.isAuthenticated) {
+                this.fazerLogout();
+                alert('⏰ Sua sessão expirou. Faça login novamente.');
+            }
+        }, this.sessionTimeout);
+    }
+}
+
+// Instância global do sistema de auth
+const authSystem = new AuthSystem();
+
+// Interface administrativa segura
+class AdminInterface {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        this.criarInterfaceAdmin();
+        this.adicionarEventListeners();
+    }
+
+    // Criar interface administrativa
+    criarInterfaceAdmin() {
+        const adminHTML = `
+            <div id="admin-panel" class="admin-panel" style="display: none;">
+                <div class="admin-header">
+                    <h3><i class="fas fa-cogs"></i> Painel Administrativo</h3>
+                    <div class="admin-controls">
+                        <button class="btn btn-secondary btn-sm" onclick="adminInterface.exportarDados()">
+                            <i class="fas fa-download"></i> Exportar
+                        </button>
+                        <button class="btn btn-warning btn-sm" onclick="authSystem.fazerLogout()">
+                            <i class="fas fa-sign-out-alt"></i> Sair
+                        </button>
+                        <button class="btn-fechar" onclick="this.fechar()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="adminInterface.abrirTab('upload')">
+                        <i class="fas fa-upload"></i> Adicionar PDFs
+                    </button>
+                    <button class="tab-btn" onclick="adminInterface.abrirTab('gerenciar')">
+                        <i class="fas fa-list"></i> Gerenciar Materiais
+                    </button>
+                    <button class="tab-btn" onclick="adminInterface.abrirTab('estatisticas')">
+                        <i class="fas fa-chart-bar"></i> Estatísticas
+                    </button>
+                </div>
+
+                <div class="admin-content">
+                    <!-- Tab Upload -->
+                    <div id="tab-upload" class="tab-content active">
+                        <div class="upload-area" id="upload-area">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Arraste PDFs aqui ou clique para selecionar</p>
+                            <input type="file" id="admin-arquivos" multiple accept=".pdf" style="display: none;">
+                            <button class="btn btn-primary" onclick="document.getElementById('admin-arquivos').click()">
+                                Selecionar Arquivos
+                            </button>
+                        </div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Tipo de Material:</label>
+                                <select id="admin-tipo">
+                                    <option value="exame">Exame</option>
+                                    <option value="manual">Manual</option>
+                                    <option value="resumo">Resumo</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Área:</label>
+                                <select id="admin-area">
+                                    <option value="ciencias">Ciências</option>
+                                    <option value="letras">Letras</option>
+                                    <option value="artes">Artes</option>
+                                    <option value="tecnologia">Tecnologia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Classe:</label>
+                                <select id="admin-classe">
+                                    <option value="10">10ª Classe</option>
+                                    <option value="11">11ª Classe</option>
+                                    <option value="12">12ª Classe</option>
+                                    <option value="faculdade">Faculdade/Universidade</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Disciplina:</label>
+                                <select id="admin-disciplina">
+                                    <option value="matematica">Matemática</option>
+                                    <option value="portugues">Português</option>
+                                    <option value="fisica">Física</option>
+                                    <option value="quimica">Química</option>
+                                    <option value="biologia">Biologia</option>
+                                    <option value="historia">História</option>
+                                    <option value="geografia">Geografia</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ano:</label>
+                                <input type="number" id="admin-ano" value="2024" min="2000" max="2030">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label>Título Personalizado (opcional):</label>
+                                <input type="text" id="admin-titulo" placeholder="Deixe em branco para título automático">
+                            </div>
+                        </div>
+
+                        <div class="upload-preview" id="upload-preview" style="display: none;">
+                            <h4>Arquivos Selecionados:</h4>
+                            <div id="preview-list"></div>
+                        </div>
+
+                        <div class="admin-actions">
+                            <button class="btn btn-secondary" onclick="this.limparSelecao()">
+                                Limpar Seleção
+                            </button>
+                            <button class="btn btn-primary" onclick="this.enviar()" id="btn-enviar" disabled>
+                                <i class="fas fa-upload"></i> Adicionar PDFs
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Gerenciar -->
+                    <div id="tab-gerenciar" class="tab-content">
+                        <div class="management-tools">
+                            <input type="text" id="search-materiais" placeholder="Buscar materiais..." class="search-input">
+                            <button class="btn btn-secondary" onclick="adminInterface.recarregarMateriais()">
+                                <i class="fas fa-sync"></i> Atualizar
+                            </button>
+                        </div>
+                        <div id="lista-materiais" class="materiais-list">
+                            <!-- Lista de materiais será carregada aqui -->
+                        </div>
+                    </div>
+
+                    <!-- Tab Estatísticas -->
+                    <div id="tab-estatisticas" class="tab-content">
+                        <div class="stats-grid" id="admin-stats">
+                            <!-- Estatísticas administrativas -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.insertAdjacentHTML('beforeend', adminHTML);
+        this.configurarDragAndDrop();
+    }
+
+    // Configurar drag and drop
+    configurarDragAndDrop() {
+        const uploadArea = document.getElementById('upload-area');
+        const fileInput = document.getElementById('admin-arquivos');
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            fileInput.files = e.dataTransfer.files;
+            this.atualizarPreview();
+        });
+
+        fileInput.addEventListener('change', () => {
+            this.atualizarPreview();
+        });
+    }
+
+    // Atualizar preview dos arquivos
+    atualizarPreview() {
+        const files = document.getElementById('admin-arquivos').files;
+        const preview = document.getElementById('upload-preview');
+        const previewList = document.getElementById('preview-list');
+        const btnEnviar = document.getElementById('btn-enviar');
+
+        if (files.length > 0) {
+            preview.style.display = 'block';
+            previewList.innerHTML = '';
+
+            Array.from(files).forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <i class="fas fa-file-pdf"></i>
+                    <span>${file.name}</span>
+                    <small>(${this.formatarTamanho(file.size)})</small>
+                `;
+                previewList.appendChild(fileItem);
+            });
+
+            btnEnviar.disabled = false;
+        } else {
+            preview.style.display = 'none';
+            btnEnviar.disabled = true;
+        }
+    }
+
+    // Limpar seleção
+    limparSelecao() {
+        document.getElementById('admin-arquivos').value = '';
+        this.atualizarPreview();
+    }
+
+    // Abrir interface admin (com verificação de auth)
+    abrir() {
+        if (authSystem.verificarAuth()) {
+            document.getElementById('admin-panel').style.display = 'block';
+            this.carregarEstatisticasAdmin();
+        }
+    }
+
+    // Fechar interface admin
+    fechar() {
+        document.getElementById('admin-panel').style.display = 'none';
+        this.limparSelecao();
+    }
+
+    // Trocar abas
+    abrirTab(tabName) {
+        // Esconder todas as tabs
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        // Mostrar tab selecionada
+        document.getElementById(`tab-${tabName}`).classList.add('active');
+        event.target.classList.add('active');
+
+        // Carregar conteúdo específico da tab
+        if (tabName === 'gerenciar') {
+            this.carregarListaMateriais();
+        } else if (tabName === 'estatisticas') {
+            this.carregarEstatisticasAdmin();
+        }
+    }
+
+    // Enviar arquivos
+    async enviar() {
+        if (!authSystem.verificarAuth()) return;
+
+        const arquivos = document.getElementById('admin-arquivos').files;
+        
+        if (arquivos.length === 0) {
+            this.mostrarNotificacao('Por favor, selecione pelo menos um arquivo PDF.', 'error');
+            return;
+        }
+
+        const metadados = {
+            tipo: document.getElementById('admin-tipo').value,
+            area: document.getElementById('admin-area').value,
+            classe: document.getElementById('admin-classe').value,
+            disciplina: document.getElementById('admin-disciplina').value,
+            ano: document.getElementById('admin-ano').value,
+            tituloPersonalizado: document.getElementById('admin-titulo').value
+        };
+
+        try {
+            this.mostrarNotificacao('Processando arquivos...', 'info');
+            await uploadManager.adicionarPDFs(arquivos, metadados);
+            
+            this.mostrarNotificacao(`✅ ${arquivos.length} PDF(s) adicionado(s) com sucesso!`, 'success');
+            this.limparSelecao();
+            this.carregarEstatisticasAdmin();
+            
+        } catch (error) {
+            this.mostrarNotificacao('❌ Erro ao adicionar PDFs: ' + error.message, 'error');
+        }
+    }
+
+    // Carregar lista de materiais
+    carregarListaMateriais() {
+        const container = document.getElementById('lista-materiais');
+        const todosMateriais = pdfLoader.buscarMateriais();
+        
+        if (todosMateriais.length === 0) {
+            container.innerHTML = '<div class="empty-state">Nenhum material cadastrado</div>';
+            return;
+        }
+
+        container.innerHTML = todosMateriais.map(material => `
+            <div class="material-item" data-id="${material.id}">
+                <div class="material-info">
+                    <div class="material-title">${material.titulo}</div>
+                    <div class="material-meta">
+                        <span class="badge badge-${material.area}">${material.area}</span>
+                        <span class="badge">${material.classe}</span>
+                        <span class="badge">${material.disciplina}</span>
+                        <span class="badge">${material.ano}</span>
+                        <span class="badge">${material.tipo}</span>
+                    </div>
+                    <div class="material-details">
+                        <small>${material.paginas} páginas • ${material.tamanho} • ${material.dataUpload}</small>
+                    </div>
+                </div>
+                <div class="material-actions">
+                    <button class="btn btn-sm btn-danger" onclick="adminInterface.removerMaterial('${material.id}')">
+                        <i class="fas fa-trash"></i> Remover
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Remover material
+    removerMaterial(id) {
+        if (!authSystem.verificarAuth()) return;
+        
+        if (confirm('Tem certeza que deseja remover este material?')) {
+            // Implementar remoção
+            this.mostrarNotificacao('Material removido com sucesso!', 'success');
+            this.carregarListaMateriais();
+            this.carregarEstatisticasAdmin();
+        }
+    }
+
+    // Carregar estatísticas admin
+    carregarEstatisticasAdmin() {
+        const stats = pdfLoader.obterEstatisticas();
+        const container = document.getElementById('admin-stats');
+        
+        container.innerHTML = `
+            <div class="stat-card">
+                <div class="stat-number">${stats.totalDocumentos}</div>
+                <div class="stat-label">Total de Documentos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${stats.totalExames}</div>
+                <div class="stat-label">Exames</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${stats.totalManuais}</div>
+                <div class="stat-label">Manuais</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${stats.totalResumos}</div>
+                <div class="stat-label">Resumos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${stats.disciplinas}</div>
+                <div class="stat-label">Disciplinas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${stats.anos}</div>
+                <div class="stat-label">Anos Diferentes</div>
+            </div>
+        `;
+    }
+
+    // Exportar dados
+    exportarDados() {
+        if (!authSystem.verificarAuth()) return;
+        
+        const dados = pdfLoader.materiais;
+        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `backup-materiais-${new Date().toISOString().split('T')[0]}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        this.mostrarNotificacao('Dados exportados com sucesso!', 'success');
+    }
+
+    // Recarregar materiais
+    recarregarMateriais() {
+        pdfLoader.carregarEstrutura();
+        this.carregarListaMateriais();
+        this.mostrarNotificacao('Lista atualizada!', 'success');
+    }
+
+    // Mostrar notificação
+    mostrarNotificacao(mensagem, tipo = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${tipo}`;
+        notification.innerHTML = `
+            <span>${mensagem}</span>
+            <button onclick="this.parentElement.remove()">&times;</button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 5000);
+    }
+
+    // Formatar tamanho do arquivo
+    formatarTamanho(bytes) {
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        if (bytes === 0) return '0 Bytes';
+        const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+    }
+
+    // Adicionar event listeners
+    adicionarEventListeners() {
+        // Atalho de teclado seguro
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                e.preventDefault();
+                authSystem.abrirLogin();
+            }
+        });
+    }
+}
+
+// Instância global da interface admin
+const adminInterface = new AdminInterface();
+
+{
+  "site": {
+    "nome": "Arquivo Acadêmico Central",
+    "descricao": "Exames, Materiais de Estudo e Recursos Educacionais",
+    "versao": "1.0.0",
+    "autor": "Watche"
+  },
+  "configuracoes": {
+    "itensPorPagina": 20,
+    "habilitarCache": true,
+    "modoManutencao": false
+  },
+  "categorias": {
+    "ciencias": {
+      "nome": "Ciências",
+      "cor": "#3498db",
+      "icone": "fa-flask"
+    },
+    "letras": {
+      "nome": "Letras",
+      "cor": "#f39c12",
+      "icone": "fa-book"
+    },
+    "artes": {
+      "nome": "Artes",
+      "cor": "#9b59b6",
+      "icone": "fa-palette"
+    },
+    "tecnologia": {
+      "nome": "Tecnologia",
+      "cor": "#1abc9c",
+      "icone": "fa-laptop-code"
+    }
+  }
+}
+
+/* Estilos do sistema administrativo */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--primary);
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-input:focus {
+    border-color: var(--secondary);
+    outline: none;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Painel Administrativo */
+.admin-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 90vh;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.admin-header {
+    padding: 20px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-tabs {
+    display: flex;
+    background: var(--light);
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+    background: white;
+    border-bottom: 3px solid var(--secondary);
+}
+
+.admin-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: var(--secondary);
+    background: #f8f9fa;
+}
+
+.upload-area.dragover {
+    border-color: var(--success);
+    background: #e8f5e8;
+}
+
+.upload-area i {
+    font-size: 3rem;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.upload-area p {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* Upload Preview */
+.upload-preview {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+.file-item i {
+    color: var(--accent);
+}
+
+/* Management */
+.management-tools {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+}
+
+.materiais-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.material-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+}
+
+.material-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.material-meta {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+
+.badge {
+    padding: 2px 8px;
+    background: #e9ecef;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: #495057;
+}
+
+.badge-ciencias { background: #e8f4fd; color: #3498db; }
+.badge-letras { background: #fef9e7; color: #f39c12; }
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat-card {
+    background: var(--light);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10002;
+    animation: slideIn 0.3s ease;
+}
+
+.notification-success { background: var(--success); }
+.notification-error { background: var(--accent); }
+.notification-info { background: var(--secondary); }
+
+.notification button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-primary { background: var(--secondary); color: white; }
+.btn-secondary { background: #6c757d; color: white; }
+.btn-success { background: var(--success); color: white; }
+.btn-warning { background: var(--warning); color: white; }
+.btn-danger { background: var(--accent); color: white; }
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-sm { padding: 6px 12px; font-size: 0.9rem; }
+
+.btn-fechar {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-panel {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .material-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .material-actions {
+        align-self: flex-end;
+    }
+}
+
+/* --- MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .filtros {
+        flex-direction: column;
+    }
+    
+    .filtro-grupo {
+        min-width: 100%;
+    }
+    
+    .exame-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .exame-acoes {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .btn-download {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .estatisticas {
+        flex-direction: column;
+    }
+    
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .exame-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .header-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .filtros {
+        gap: 20px;
+    }
+    
+    .filtro-grupo {
+        min-width: 200px;
+    }
+}
+
+/* --- VARIÁVEIS E RESET --- */
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --text: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* --- HEADER --- */
+header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    padding: 25px 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-position: center;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    position: relative;
+}
+
+/* --- ESTATÍSTICAS --- */
+.estatisticas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: space-around;
+}
+
+.estatistica-item {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 15px;
+    background: var(--light);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.estatistica-numero {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.estatistica-texto {
+    font-size: 0.9rem;
+    color: var(--dark);
+}
+
+/* --- FILTROS --- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: var(--light);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filtro-grupo {
+    flex: 1;
+    min-width: 180px;
+}
+
+.filtro-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.filtro-grupo select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background-color: white;
+    font-size: 1rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.filtro-grupo select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+}
+
+.btn-limpar {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    align-self: flex-end;
+    margin-top: 25px;
+}
+
+.btn-limpar:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* --- LISTA DE EXAMES/MATERIAIS --- */
+.secao-conteudo {
+    margin-bottom: 40px;
+}
+
+.secao-conteudo h2 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--secondary);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exame-item {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.exame-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: var(--transition);
+}
+
+.exame-item:hover::before {
+    left: 100%;
+}
+
+.exame-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.exame-info {
+    flex: 1;
+}
+
+.exame-titulo {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.exame-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.exame-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.exame-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-download {
+    background: var(--success);
+    color: white;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-download:hover {
+    background: #219653;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-video {
+    background: var(--accent);
+}
+
+.btn-video:hover {
+    background: #c0392b;
+}
+
+/* --- CATEGORIAS --- */
+.categoria-ciencias {
+    background-color: #e8f4fd;
+    border-left-color: #3498db;
+}
+
+.categoria-letras {
+    background-color: #fef9e7;
+    border-left-color: #f39c12;
+}
+
+.categoria-artes {
+    background-color: #f9e8fd;
+    border-left-color: #9b59b6;
+}
+
+.categoria-tecnologia {
+    background-color: #e8f8f5;
+    border-left-color: #1abc9c;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- PLACEHOLDER ADSENSE --- */
+.adsense-placeholder {
+    text-align: center;
+    margin: 25px 0;
+    padding: 25px;
+    background: linear-gradient(135deg, #fffbe6 0%, #fff3cd 100%);
+    border: 2px dashed #ffc107;
+    color: #856404;
+    font-weight: 600;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* --- FOOTER E ASSINATURA --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+}
+
+.assinatura {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: var(--primary);
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* --- ANIMAÇÃO DE CARREGAMENTO --- */
+.loading {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid var(--secondary);
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- MENSAGEM SEM RESULTADOS --- */
+.sem-resultados {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.sem-resultados i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #bdc3c7;
+}

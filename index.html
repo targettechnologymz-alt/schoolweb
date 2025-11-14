@@ -3,51 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arquivo Acadêmico Central - Exames, Manuais e Resumos de Estudo</title>
+    <title>Arquivo Acadêmico Central - Exames, Editais e Materiais de Estudo</title>
 
     <!-- ✅ SEO -->
-    <meta name="description" content="Baixe exames, manuais e resumos acadêmicos de todas as classes e disciplinas. Arquivo Acadêmico Central - o seu portal de estudo.">
-    <meta name="keywords" content="exames moçambique, manuais, resumos, materiais de estudo, educação, PDF escolar, ensino médio, faculdade">
+    <meta name="description" content="Baixe exames, editais, notícias e materiais acadêmicos das principais instituições de ensino de Moçambique. Portal educacional completo.">
+    <meta name="keywords" content="exames moçambique, editais universidades, UEM, UJC, UniLúrio, materiais estudo, educação moçambique">
     <meta name="author" content="Maroon Technology">
     <meta name="robots" content="index, follow">
 
     <!-- ✅ Open Graph / Redes Sociais -->
     <meta property="og:title" content="Arquivo Acadêmico Central - Materiais de Estudo em PDF">
-    <meta property="og:description" content="Portal educacional com exames, manuais e resumos para alunos e professores.">
+    <meta property="og:description" content="Portal educacional com exames, editais e materiais para universidades de Moçambique.">
     <meta property="og:image" content="https://targettechnologymz-alt.github.io/schoolweb/img/preview.png">
     <meta property="og:url" content="https://targettechnologymz-alt.github.io/schoolweb/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- ✅ Favicon -->
-    <link rel="icon" href="img/favicon.png" type="image/png">
+    <!-- ✅ Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1816282885500573"
+        crossorigin="anonymous"></script>
 
     <!-- ✅ Estilos -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ✅ Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1885724199927881"
-        crossorigin="anonymous"></script>
+    <!-- ✅ Configurações -->
+    <script src="config.js"></script>
 </head>
 
 <body>
+    <!-- Área invisível para acesso admin (topo direito da tela) -->
+    <div id="secret-admin-trigger" style="position: fixed; top: 0; right: 0; width: 50px; height: 50px; background: transparent; z-index: 9999; cursor: pointer;"></div>
+
     <header>
         <div class="header-content">
             <i class="fas fa-graduation-cap"></i><h1>ARQUIVO ACADÊMICO CENTRAL</h1>
-            <p>Exames, Manuais, Resumos e Recursos Educacionais</p>
+            <p>Exames, Editais, Notícias e Materiais das Universidades de Moçambique</p>
         </div>
     </header>
 
     <div class="container">
-
         <!-- 🟢 Anúncio Topo -->
         <div class="adsense-placeholder">
             <ins class="adsbygoogle"
                 style="display:block; text-align:center;"
-                data-ad-client="ca-pub-1885724199927881"
+                data-ad-client="ca-pub-1816282885500573"
                 data-ad-slot="5214728394"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
@@ -60,23 +61,24 @@
         <!-- Filtros -->
         <section class="filtros">
             <div class="filtro-grupo">
-                <label for="area-filtro"><i class="fas fa-layer-group"></i> Área:</label>
-                <select id="area-filtro"><option value="todos">Todas as Áreas</option></select>
+                <label for="instituicao-filtro"><i class="fas fa-university"></i> Instituição:</label>
+                <select id="instituicao-filtro">
+                    <option value="todos">Todas as Instituições</option>
+                </select>
             </div>
 
             <div class="filtro-grupo">
-                <label for="classe-filtro"><i class="fas fa-user-graduate"></i> Classe:</label>
-                <select id="classe-filtro"><option value="todos">Todas as Classes</option></select>
+                <label for="tipo-filtro"><i class="fas fa-file"></i> Tipo:</label>
+                <select id="tipo-filtro">
+                    <option value="todos">Todos os Tipos</option>
+                </select>
             </div>
 
-            <div class="filtro-grupo">
-                <label for="disciplina-filtro"><i class="fas fa-book"></i> Disciplina:</label>
-                <select id="disciplina-filtro"><option value="todos">Todas as Disciplinas</option></select>
-            </div>
-            
             <div class="filtro-grupo">
                 <label for="ano-filtro"><i class="fas fa-calendar-alt"></i> Ano:</label>
-                <select id="ano-filtro"><option value="todos">Todos os Anos</option></select>
+                <select id="ano-filtro">
+                    <option value="todos">Todos os Anos</option>
+                </select>
             </div>
             
             <button class="btn-limpar" id="btn-limpar">
@@ -93,11 +95,11 @@
         <!-- Conteúdo Principal -->
         <main id="conteudo-principal"></main>
         
-        <!-- 🟢 Anúncio no meio da página -->
+        <!-- 🟢 Anúncio no meio -->
         <div class="adsense-placeholder">
             <ins class="adsbygoogle"
                 style="display:block; text-align:center;"
-                data-ad-client="ca-pub-1885724199927881"
+                data-ad-client="ca-pub-1816282885500573"
                 data-ad-slot="8123495123"
                 data-ad-format="auto"
                 data-full-width-responsive="true"></ins>
@@ -116,7 +118,7 @@
             <div class="adsense-placeholder">
                 <ins class="adsbygoogle"
                     style="display:block; text-align:center;"
-                    data-ad-client="ca-pub-1885724199927881"
+                    data-ad-client="ca-pub-1816282885500573"
                     data-ad-slot="9712348901"
                     data-ad-format="auto"
                     data-full-width-responsive="true"></ins>
@@ -125,30 +127,84 @@
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="js/auth.js"></script>
-    <script src="js/loader.js"></script>
-    <script src="js/upload-manager.js"></script>
-    <script src="js/admin.js"></script>
-    <script src="js/estatisticas.js"></script>
-    <script src="js/filtros.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Modal Login Seguro (Oculto) -->
+    <div id="secure-login-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt"></i> Verificação de Segurança</h3>
+                <button class="btn-fechar" onclick="secureAuth.fecharLoginSeguro()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="secure-access-code">Código de Acesso:</label>
+                    <input type="password" id="secure-access-code" class="form-input" 
+                           placeholder="Digite o código de acesso seguro" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="secure-token">Token de Verificação:</label>
+                    <input type="text" id="secure-token" class="form-input" 
+                           placeholder="Token gerado automaticamente" readonly
+                           style="background: #f8f9fa; font-family: monospace;">
+                </div>
+                <div class="security-info">
+                    <p><i class="fas fa-info-circle"></i> <span id="attempts-counter">Tentativas restantes: 3</span></p>
+                </div>
+                <div class="form-actions">
+                    <button class="btn btn-secondary" onclick="secureAuth.fecharLoginSeguro()">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
+                    <button class="btn btn-primary" onclick="secureAuth.verificarAcessoSeguro()">
+                        <i class="fas fa-key"></i> Verificar Acesso
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- ✅ Schema SEO (Google Rich Snippets) -->
+    <!-- Modal Admin -->
+    <div class="modal" id="admin-modal">
+        <div class="modal-content admin-modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Adicionar Conteúdo</h3>
+                <div class="admin-controls">
+                    <button class="btn btn-sm btn-warning" onclick="secureAuth.fazerLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                    <button class="btn-fechar" onclick="adminInterface.fechar()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do admin será carregado aqui pelo admin.js -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/security.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/filtros.js"></script>
+    <script src="js/estatisticas.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/upload.js"></script>
+
+    <!-- ✅ Schema SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "EducationalOrganization",
         "name": "Arquivo Acadêmico Central",
         "url": "https://targettechnologymz-alt.github.io/schoolweb/",
-        "logo": "https://targettechnologymz-alt.github.io/schoolweb/img/logo.png",
-        "description": "Portal educacional com exames, manuais e resumos para alunos e professores.",
-        "founder": "Maroon Technology",
-        "sameAs": [
-            "https://facebook.com/maroontech",
-            "https://github.com/targettechnologymz-alt"
-        ]
+        "description": "Portal educacional com exames, editais e materiais para universidades de Moçambique.",
+        "founder": "Maroon Technology"
     }
     </script>
+
+    <!-- ✅ Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

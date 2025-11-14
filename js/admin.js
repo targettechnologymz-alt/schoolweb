@@ -1,310 +1,173 @@
-// Interface administrativa segura
+// Interface Administrativa (Completamente Ocultada)
 class AdminInterface {
     constructor() {
+        this.abaAtual = 'upload';
         this.init();
     }
 
     init() {
         this.criarInterfaceAdmin();
-        this.adicionarEventListeners();
     }
 
     // Criar interface administrativa
     criarInterfaceAdmin() {
-        const adminHTML = `
-            <div id="admin-panel" class="admin-panel" style="display: none;">
-                <div class="admin-header">
-                    <h3><i class="fas fa-cogs"></i> Painel Administrativo</h3>
-                    <div class="admin-controls">
-                        <button class="btn btn-secondary btn-sm" onclick="adminInterface.exportarDados()">
-                            <i class="fas fa-download"></i> Exportar
-                        </button>
-                        <button class="btn btn-warning btn-sm" onclick="authSystem.fazerLogout()">
-                            <i class="fas fa-sign-out-alt"></i> Sair
-                        </button>
-                        <button class="btn-fechar" onclick="this.fechar()">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="admin-tabs">
-                    <button class="tab-btn active" onclick="adminInterface.abrirTab('upload')">
-                        <i class="fas fa-upload"></i> Adicionar PDFs
-                    </button>
-                    <button class="tab-btn" onclick="adminInterface.abrirTab('gerenciar')">
-                        <i class="fas fa-list"></i> Gerenciar Materiais
-                    </button>
-                    <button class="tab-btn" onclick="adminInterface.abrirTab('estatisticas')">
-                        <i class="fas fa-chart-bar"></i> Estatísticas
-                    </button>
+        // A interface será criada quando o modal for aberto
+    }
+
+    // Carregar conteúdo administrativo
+    carregarInterfaceAdmin() {
+        const modalBody = document.querySelector('#admin-modal .modal-body');
+        if (!modalBody) return;
+
+        modalBody.innerHTML = `
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="upload">
+                    <i class="fas fa-upload"></i> Adicionar Conteúdo
+                </button>
+                <button class="tab-btn" data-tab="gerenciar">
+                    <i class="fas fa-list"></i> Gerenciar Materiais
+                </button>
+                <button class="tab-btn" data-tab="estatisticas">
+                    <i class="fas fa-chart-bar"></i> Estatísticas
+                </button>
+            </div>
+
+            <div class="admin-content">
+                <!-- Tab Upload -->
+                <div id="tab-upload" class="tab-content active">
+                    ${this.criarTabUpload()}
                 </div>
 
-                <div class="admin-content">
-                    <!-- Tab Upload -->
-                    <div id="tab-upload" class="tab-content active">
-                        <div class="upload-area" id="upload-area">
-                            <i class="fas fa-cloud-upload-alt"></i>
-                            <p>Arraste PDFs aqui ou clique para selecionar</p>
-                            <input type="file" id="admin-arquivos" multiple accept=".pdf" style="display: none;">
-                            <button class="btn btn-primary" onclick="document.getElementById('admin-arquivos').click()">
-                                Selecionar Arquivos
-                            </button>
-                        </div>
-                        
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>Tipo de Material:</label>
-                                <select id="admin-tipo">
-                                    <option value="exame">Exame</option>
-                                    <option value="manual">Manual</option>
-                                    <option value="resumo">Resumo</option>
-                                </select>
-                            </div>
+                <!-- Tab Gerenciar -->
+                <div id="tab-gerenciar" class="tab-content">
+                    ${this.criarTabGerenciar()}
+                </div>
 
-                            <div class="form-group">
-                                <label>Área:</label>
-                                <select id="admin-area">
-                                    <option value="ciencias">Ciências</option>
-                                    <option value="letras">Letras</option>
-                                    <option value="artes">Artes</option>
-                                    <option value="tecnologia">Tecnologia</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Classe:</label>
-                                <select id="admin-classe">
-                                    <option value="10">10ª Classe</option>
-                                    <option value="11">11ª Classe</option>
-                                    <option value="12">12ª Classe</option>
-                                    <option value="faculdade">Faculdade/Universidade</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Disciplina:</label>
-                                <select id="admin-disciplina">
-                                    <option value="matematica">Matemática</option>
-                                    <option value="portugues">Português</option>
-                                    <option value="fisica">Física</option>
-                                    <option value="quimica">Química</option>
-                                    <option value="biologia">Biologia</option>
-                                    <option value="historia">História</option>
-                                    <option value="geografia">Geografia</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Ano:</label>
-                                <input type="number" id="admin-ano" value="2024" min="2000" max="2030">
-                            </div>
-
-                            <div class="form-group full-width">
-                                <label>Título Personalizado (opcional):</label>
-                                <input type="text" id="admin-titulo" placeholder="Deixe em branco para título automático">
-                            </div>
-                        </div>
-
-                        <div class="upload-preview" id="upload-preview" style="display: none;">
-                            <h4>Arquivos Selecionados:</h4>
-                            <div id="preview-list"></div>
-                        </div>
-
-                        <div class="admin-actions">
-                            <button class="btn btn-secondary" onclick="this.limparSelecao()">
-                                Limpar Seleção
-                            </button>
-                            <button class="btn btn-primary" onclick="this.enviar()" id="btn-enviar" disabled>
-                                <i class="fas fa-upload"></i> Adicionar PDFs
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tab Gerenciar -->
-                    <div id="tab-gerenciar" class="tab-content">
-                        <div class="management-tools">
-                            <input type="text" id="search-materiais" placeholder="Buscar materiais..." class="search-input">
-                            <button class="btn btn-secondary" onclick="adminInterface.recarregarMateriais()">
-                                <i class="fas fa-sync"></i> Atualizar
-                            </button>
-                        </div>
-                        <div id="lista-materiais" class="materiais-list">
-                            <!-- Lista de materiais será carregada aqui -->
-                        </div>
-                    </div>
-
-                    <!-- Tab Estatísticas -->
-                    <div id="tab-estatisticas" class="tab-content">
-                        <div class="stats-grid" id="admin-stats">
-                            <!-- Estatísticas administrativas -->
-                        </div>
-                    </div>
+                <!-- Tab Estatísticas -->
+                <div id="tab-estatisticas" class="tab-content">
+                    ${this.criarTabEstatisticas()}
                 </div>
             </div>
         `;
 
-        document.body.insertAdjacentHTML('beforeend', adminHTML);
-        this.configurarDragAndDrop();
+        this.adicionarEventListenersAdmin();
     }
 
-    // Configurar drag and drop
-    configurarDragAndDrop() {
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('admin-arquivos');
+    // Criar tab de upload
+    criarTabUpload() {
+        return `
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Tipo de Material:</label>
+                    <select id="admin-tipo" class="form-select">
+                        ${TIPOS_CONTEUDO.map(tipo => 
+                            `<option value="${tipo.valor}">${tipo.texto}</option>`
+                        ).join('')}
+                    </select>
+                </div>
 
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
+                <div class="form-group">
+                    <label>Instituição:</label>
+                    <select id="admin-instituicao" class="form-select">
+                        ${INSTITUICOES.map(inst => 
+                            `<option value="${inst.sigla}">${inst.nome}</option>`
+                        ).join('')}
+                    </select>
+                </div>
 
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
+                <div class="form-group">
+                    <label>Ano:</label>
+                    <input type="number" id="admin-ano" class="form-input" value="2024" min="2000" max="2030">
+                </div>
 
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            fileInput.files = e.dataTransfer.files;
-            this.atualizarPreview();
-        });
+                <div class="form-group">
+                    <label>Disciplina/Curso:</label>
+                    <input type="text" id="admin-disciplina" class="form-input" placeholder="Ex: Matemática, Direito, etc.">
+                </div>
 
-        fileInput.addEventListener('change', () => {
-            this.atualizarPreview();
-        });
+                <div class="form-group full-width">
+                    <label>Título:</label>
+                    <input type="text" id="admin-titulo" class="form-input" placeholder="Título do conteúdo">
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Descrição:</label>
+                    <textarea id="admin-descricao" class="form-input" rows="3" placeholder="Descrição breve do conteúdo"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Arquivo PDF:</label>
+                    <input type="file" id="admin-arquivo" class="form-input" accept=".pdf">
+                    <small style="color: #666; margin-top: 5px; display: block;">
+                        ⚠️ Faça upload no Google Drive e cole o link abaixo
+                    </small>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>URL do Google Drive:</label>
+                    <input type="url" id="admin-url" class="form-input" placeholder="https://drive.google.com/...">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="adminInterface.limparFormulario()">
+                    <i class="fas fa-times"></i> Limpar
+                </button>
+                <button class="btn btn-primary" onclick="adminInterface.publicarConteudo()">
+                    <i class="fas fa-upload"></i> Publicar Conteúdo
+                </button>
+            </div>
+        `;
     }
 
-    // Atualizar preview dos arquivos
-    atualizarPreview() {
-        const files = document.getElementById('admin-arquivos').files;
-        const preview = document.getElementById('upload-preview');
-        const previewList = document.getElementById('preview-list');
-        const btnEnviar = document.getElementById('btn-enviar');
-
-        if (files.length > 0) {
-            preview.style.display = 'block';
-            previewList.innerHTML = '';
-
-            Array.from(files).forEach(file => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                    <i class="fas fa-file-pdf"></i>
-                    <span>${file.name}</span>
-                    <small>(${this.formatarTamanho(file.size)})</small>
-                `;
-                previewList.appendChild(fileItem);
-            });
-
-            btnEnviar.disabled = false;
-        } else {
-            preview.style.display = 'none';
-            btnEnviar.disabled = true;
-        }
+    // Criar tab de gerenciamento
+    criarTabGerenciar() {
+        return `
+            <div class="management-tools">
+                <input type="text" id="search-materiais" placeholder="Buscar materiais..." class="search-input">
+                <button class="btn btn-secondary" onclick="adminInterface.recarregarMateriais()">
+                    <i class="fas fa-sync"></i> Atualizar
+                </button>
+            </div>
+            <div id="lista-materiais" class="materiais-list">
+                ${this.carregarListaMateriais()}
+            </div>
+        `;
     }
 
-    // Limpar seleção
-    limparSelecao() {
-        document.getElementById('admin-arquivos').value = '';
-        this.atualizarPreview();
-    }
-
-    // Abrir interface admin (com verificação de auth)
-    abrir() {
-        if (authSystem.verificarAuth()) {
-            document.getElementById('admin-panel').style.display = 'block';
-            this.carregarEstatisticasAdmin();
-        }
-    }
-
-    // Fechar interface admin
-    fechar() {
-        document.getElementById('admin-panel').style.display = 'none';
-        this.limparSelecao();
-    }
-
-    // Trocar abas
-    abrirTab(tabName) {
-        // Esconder todas as tabs
-        document.querySelectorAll('.tab-content').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-
-        // Mostrar tab selecionada
-        document.getElementById(`tab-${tabName}`).classList.add('active');
-        event.target.classList.add('active');
-
-        // Carregar conteúdo específico da tab
-        if (tabName === 'gerenciar') {
-            this.carregarListaMateriais();
-        } else if (tabName === 'estatisticas') {
-            this.carregarEstatisticasAdmin();
-        }
-    }
-
-    // Enviar arquivos
-    async enviar() {
-        if (!authSystem.verificarAuth()) return;
-
-        const arquivos = document.getElementById('admin-arquivos').files;
-        
-        if (arquivos.length === 0) {
-            this.mostrarNotificacao('Por favor, selecione pelo menos um arquivo PDF.', 'error');
-            return;
-        }
-
-        const metadados = {
-            tipo: document.getElementById('admin-tipo').value,
-            area: document.getElementById('admin-area').value,
-            classe: document.getElementById('admin-classe').value,
-            disciplina: document.getElementById('admin-disciplina').value,
-            ano: document.getElementById('admin-ano').value,
-            tituloPersonalizado: document.getElementById('admin-titulo').value
-        };
-
-        try {
-            this.mostrarNotificacao('Processando arquivos...', 'info');
-            await uploadManager.adicionarPDFs(arquivos, metadados);
-            
-            this.mostrarNotificacao(`✅ ${arquivos.length} PDF(s) adicionado(s) com sucesso!`, 'success');
-            this.limparSelecao();
-            this.carregarEstatisticasAdmin();
-            
-        } catch (error) {
-            this.mostrarNotificacao('❌ Erro ao adicionar PDFs: ' + error.message, 'error');
-        }
+    // Criar tab de estatísticas
+    criarTabEstatisticas() {
+        return `
+            <div class="stats-grid" id="admin-stats">
+                ${this.carregarEstatisticasAdmin()}
+            </div>
+        `;
     }
 
     // Carregar lista de materiais
     carregarListaMateriais() {
-        const container = document.getElementById('lista-materiais');
-        const todosMateriais = pdfLoader.buscarMateriais();
+        const materiais = mainSystem.materiais;
         
-        if (todosMateriais.length === 0) {
-            container.innerHTML = '<div class="empty-state">Nenhum material cadastrado</div>';
-            return;
+        if (materiais.length === 0) {
+            return '<div class="empty-state">Nenhum material cadastrado</div>';
         }
 
-        container.innerHTML = todosMateriais.map(material => `
+        return materiais.map(material => `
             <div class="material-item" data-id="${material.id}">
                 <div class="material-info">
                     <div class="material-title">${material.titulo}</div>
                     <div class="material-meta">
-                        <span class="badge badge-${material.area}">${material.area}</span>
-                        <span class="badge">${material.classe}</span>
-                        <span class="badge">${material.disciplina}</span>
+                        <span class="badge">${material.instituicao}</span>
                         <span class="badge">${material.ano}</span>
                         <span class="badge">${material.tipo}</span>
+                        <span class="badge">${material.disciplina || 'Geral'}</span>
                     </div>
                     <div class="material-details">
-                        <small>${material.paginas} páginas • ${material.tamanho} • ${material.dataUpload}</small>
+                        <small>${material.visualizacoes || 0} visualizações • ${material.downloads || 0} downloads • ${mainSystem.formatarData(material.dataPublicacao)}</small>
                     </div>
                 </div>
                 <div class="material-actions">
-                    <button class="btn btn-sm btn-danger" onclick="adminInterface.removerMaterial('${material.id}')">
+                    <button class="btn btn-sm btn-danger" onclick="adminInterface.removerMaterial(${material.id})">
                         <i class="fas fa-trash"></i> Remover
                     </button>
                 </div>
@@ -312,109 +175,198 @@ class AdminInterface {
         `).join('');
     }
 
-    // Remover material
-    removerMaterial(id) {
-        if (!authSystem.verificarAuth()) return;
-        
-        if (confirm('Tem certeza que deseja remover este material?')) {
-            // Implementar remoção
-            this.mostrarNotificacao('Material removido com sucesso!', 'success');
-            this.carregarListaMateriais();
-            this.carregarEstatisticasAdmin();
-        }
-    }
-
     // Carregar estatísticas admin
     carregarEstatisticasAdmin() {
-        const stats = pdfLoader.obterEstatisticas();
-        const container = document.getElementById('admin-stats');
-        
-        container.innerHTML = `
+        const stats = mainSystem.materiais.reduce((acc, material) => {
+            acc.totalDocumentos++;
+            acc[material.tipo] = (acc[material.tipo] || 0) + 1;
+            acc.totalVisualizacoes += material.visualizacoes || 0;
+            acc.totalDownloads += material.downloads || 0;
+            return acc;
+        }, {
+            totalDocumentos: 0,
+            exame: 0,
+            edital: 0,
+            noticia: 0,
+            manual: 0,
+            resumo: 0,
+            totalVisualizacoes: 0,
+            totalDownloads: 0
+        });
+
+        const instituicoesUnicas = new Set(mainSystem.materiais.map(m => m.instituicao)).size;
+        const anosUnicos = new Set(mainSystem.materiais.map(m => m.ano)).size;
+
+        return `
             <div class="stat-card">
                 <div class="stat-number">${stats.totalDocumentos}</div>
-                <div class="stat-label">Total de Documentos</div>
+                <div class="stat-label">Total Documentos</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">${stats.totalExames}</div>
+                <div class="stat-number">${stats.exame}</div>
                 <div class="stat-label">Exames</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">${stats.totalManuais}</div>
-                <div class="stat-label">Manuais</div>
+                <div class="stat-number">${stats.edital}</div>
+                <div class="stat-label">Editais</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">${stats.totalResumos}</div>
-                <div class="stat-label">Resumos</div>
+                <div class="stat-number">${instituicoesUnicas}</div>
+                <div class="stat-label">Instituições</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">${stats.disciplinas}</div>
-                <div class="stat-label">Disciplinas</div>
+                <div class="stat-number">${stats.totalVisualizacoes}</div>
+                <div class="stat-label">Visualizações</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">${stats.anos}</div>
-                <div class="stat-label">Anos Diferentes</div>
+                <div class="stat-number">${stats.totalDownloads}</div>
+                <div class="stat-label">Downloads</div>
             </div>
         `;
     }
 
-    // Exportar dados
-    exportarDados() {
-        if (!authSystem.verificarAuth()) return;
+    // Adicionar event listeners do admin
+    adicionarEventListenersAdmin() {
+        // Tabs
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab-btn') || e.target.parentElement.classList.contains('tab-btn')) {
+                const tabBtn = e.target.classList.contains('tab-btn') ? e.target : e.target.parentElement;
+                const tabName = tabBtn.getAttribute('data-tab');
+                this.abrirTab(tabName);
+            }
+        });
+    }
+
+    // Abrir interface admin
+    abrir() {
+        if (secureAuth.verificarAuth()) {
+            document.getElementById('admin-modal').style.display = 'flex';
+            this.carregarInterfaceAdmin();
+            this.carregarConteudoAbaAtual();
+        }
+    }
+
+    // Fechar interface admin
+    fechar() {
+        document.getElementById('admin-modal').style.display = 'none';
+        this.limparFormulario();
+    }
+
+    // Trocar abas
+    abrirTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        const tabElement = document.getElementById(`tab-${tabName}`);
+        const tabBtn = document.querySelector(`[data-tab="${tabName}"]`);
+
+        if (tabElement && tabBtn) {
+            tabElement.classList.add('active');
+            tabBtn.classList.add('active');
+            this.abaAtual = tabName;
+        }
+    }
+
+    // Carregar conteúdo da aba atual
+    carregarConteudoAbaAtual() {
+        const container = document.getElementById('lista-materiais');
+        const statsContainer = document.getElementById('admin-stats');
         
-        const dados = pdfLoader.materiais;
-        const blob = new Blob([JSON.stringify(dados, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `backup-materiais-${new Date().toISOString().split('T')[0]}.json`;
-        a.click();
-        URL.revokeObjectURL(url);
+        if (container) {
+            container.innerHTML = this.carregarListaMateriais();
+        }
+        if (statsContainer) {
+            statsContainer.innerHTML = this.carregarEstatisticasAdmin();
+        }
+    }
+
+    // Publicar conteúdo
+    async publicarConteudo() {
+        if (!secureAuth.verificarAuth()) return;
+
+        const tipo = document.getElementById('admin-tipo').value;
+        const instituicao = document.getElementById('admin-instituicao').value;
+        const titulo = document.getElementById('admin-titulo').value;
+        const ano = document.getElementById('admin-ano').value;
+        const disciplina = document.getElementById('admin-disciplina').value;
+        const descricao = document.getElementById('admin-descricao').value;
+        const url = document.getElementById('admin-url').value;
+
+        if (!titulo) {
+            secureAuth.mostrarNotificacao('❌ Preencha o título do conteúdo', 'error');
+            return;
+        }
+
+        if (!url) {
+            secureAuth.mostrarNotificacao('❌ Forneça a URL do Google Drive', 'error');
+            return;
+        }
+
+        const novoMaterial = {
+            id: Date.now(),
+            titulo: titulo,
+            instituicao: instituicao,
+            tipo: tipo,
+            disciplina: disciplina,
+            ano: ano,
+            descricao: descricao,
+            url: url,
+            dataPublicacao: new Date().toISOString().split('T')[0],
+            visualizacoes: 0,
+            downloads: 0
+        };
+
+        mainSystem.materiais.push(novoMaterial);
+        mainSystem.salvarMateriais();
+        mainSystem.atualizarConteudo();
         
-        this.mostrarNotificacao('Dados exportados com sucesso!', 'success');
+        if (typeof estatisticasSystem !== 'undefined') {
+            estatisticasSystem.atualizarEstatisticas();
+        }
+
+        this.limparFormulario();
+        this.carregarConteudoAbaAtual();
+        
+        secureAuth.mostrarNotificacao('✅ Conteúdo publicado com sucesso!', 'success');
+    }
+
+    // Remover material
+    removerMaterial(id) {
+        if (!secureAuth.verificarAuth()) return;
+        
+        if (confirm('Tem certeza que deseja remover este material?')) {
+            const index = mainSystem.materiais.findIndex(m => m.id === id);
+            if (index !== -1) {
+                mainSystem.materiais.splice(index, 1);
+                mainSystem.salvarMateriais();
+                mainSystem.atualizarConteudo();
+                this.carregarConteudoAbaAtual();
+                
+                if (typeof estatisticasSystem !== 'undefined') {
+                    estatisticasSystem.atualizarEstatisticas();
+                }
+                
+                secureAuth.mostrarNotificacao('🗑️ Material removido com sucesso!', 'success');
+            }
+        }
+    }
+
+    // Limpar formulário
+    limparFormulario() {
+        document.getElementById('admin-titulo').value = '';
+        document.getElementById('admin-disciplina').value = '';
+        document.getElementById('admin-descricao').value = '';
+        document.getElementById('admin-url').value = '';
     }
 
     // Recarregar materiais
     recarregarMateriais() {
-        pdfLoader.carregarEstrutura();
-        this.carregarListaMateriais();
-        this.mostrarNotificacao('Lista atualizada!', 'success');
-    }
-
-    // Mostrar notificação
-    mostrarNotificacao(mensagem, tipo = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${tipo}`;
-        notification.innerHTML = `
-            <span>${mensagem}</span>
-            <button onclick="this.parentElement.remove()">&times;</button>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            if (notification.parentElement) {
-                notification.remove();
-            }
-        }, 5000);
-    }
-
-    // Formatar tamanho do arquivo
-    formatarTamanho(bytes) {
-        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        if (bytes === 0) return '0 Bytes';
-        const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
-        return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
-    }
-
-    // Adicionar event listeners
-    adicionarEventListeners() {
-        // Atalho de teclado seguro
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-                e.preventDefault();
-                authSystem.abrirLogin();
-            }
-        });
+        this.carregarConteudoAbaAtual();
+        secureAuth.mostrarNotificacao('🔄 Lista atualizada!', 'success');
     }
 }
 
