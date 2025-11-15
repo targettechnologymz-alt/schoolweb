@@ -531,9 +531,11 @@
             popularAnos() {
                 const select = document.getElementById('ano-filtro');
                 if (!select) return;
-
+                const anoMaximo = 2026;
                 const anoAtual = new Date().getFullYear();
-                for (let ano = anoAtual; ano >= 2000; ano--) {
+                const anoInicial = Math.max(anoAtual, 2026);
+
+                for (let ano = anoInicial; ano >= 2000; ano--) {
                     const option = document.createElement('option');
                     option.value = ano;
                     option.textContent = ano;
