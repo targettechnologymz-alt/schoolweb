@@ -427,7 +427,8 @@
         <footer>
             <p>Arquivo Acadêmico Central &copy; 2024 - Todos os direitos reservados</p>
             <div class="assinatura">
-                <p>Criado por Target Technology</p>
+                <i class="fas fa-code"></i>
+                <span>Criado por <strong>Maroon Technology</strong></span>
             </div>
 
             <!-- 🟢 Anúncio Rodapé -->
@@ -458,13 +459,16 @@
                 { sigla: 'UniRovuma', nome: 'Universidade Rovuma' },
                 { sigla: 'UniSave', nome: 'Universidade Save' },
                 { sigla: 'UniZambeze', nome: 'Universidade Zambeze' },
+                { sigla: 'UPM', nome: 'Universidade Pedagógica de Moçambique' },
+                { sigla: 'IFP', nome: 'Instituto de Formação de Professores' },
+                { sigla: 'UCM', nome: 'Universidade Católica de Moçambique' },
+                { sigla: 'ISPM', nome: 'Instituto Superior Politécnico de Manica' },
                 { sigla: 'ESCN', nome: 'Escola Superior de Ciências Naúticas' },
                 { sigla: 'ESJ', nome: 'Escola Superior de Jornalismo' },
                 { sigla: 'ISArC', nome: 'Instituto Superior de Artes e Cultura' },
                 { sigla: 'ISCISA', nome: 'Instituto Superior de Ciências de Saúde' },
                 { sigla: 'ISCAM', nome: 'Instituto Superior de Contabilidade e Auditoria' },
                 { sigla: 'ISPG', nome: 'Instituto Superior Politécnico de Gaza' },
-                { sigla: 'ISPM', nome: 'Instituto Superior Politécnico de Manica' },
                 { sigla: 'ISPS', nome: 'Instituto Superior Politécnico de Songo' },
                 { sigla: 'ISPT', nome: 'Instituto Superior Politécnico de Tete' },
                 { sigla: 'ACIPOL', nome: 'Academia de Ciências Policiais' },
@@ -531,9 +535,12 @@
             popularAnos() {
                 const select = document.getElementById('ano-filtro');
                 if (!select) return;
+
+                // Vamos definir o ano máximo como 2026 para garantir que apareça
                 const anoMaximo = 2026;
                 const anoAtual = new Date().getFullYear();
-                const anoInicial = Math.max(anoAtual, 2026);
+                // Usar o maior entre o ano atual e 2026
+                const anoInicial = Math.max(anoAtual, anoMaximo);
 
                 for (let ano = anoInicial; ano >= 2000; ano--) {
                     const option = document.createElement('option');
