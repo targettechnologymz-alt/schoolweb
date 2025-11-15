@@ -24,9 +24,8 @@
         crossorigin="anonymous"></script>
 
     <!-- ✅ Estilos -->
-    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
     <style>
         /* Estilos básicos para funcionamento */
         * {
@@ -193,7 +192,7 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             gap: 20px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -444,7 +443,7 @@
         </footer>
     </div>
 
-    <!-- ✅ Scripts -->
+    <!-- ✅ Scripts Unificados -->
     <script>
         // Configurações e dados
         const CONFIG = {
@@ -484,7 +483,7 @@
             ]
         };
 
-        // Sistema Principal
+        // Sistema Principal Unificado
         class ArquivoAcademico {
             constructor() {
                 this.materiais = [];
@@ -504,12 +503,17 @@
                 try {
                     this.mostrarLoading();
                     const response = await fetch(CONFIG.DATA_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
                     this.materiais = await response.json();
+                    console.log('Dados carregados:', this.materiais.length, 'materiais');
                     this.esconderLoading();
                 } catch (error) {
                     console.error('Erro ao carregar dados:', error);
                     this.materiais = [];
                     this.esconderLoading();
+                    this.mostrarErro('Erro ao carregar conteúdos. Verifique o console.');
                 }
             }
 
@@ -522,7 +526,15 @@
 
             popularSelect(id, dados, valorKey, textoKey) {
                 const select = document.getElementById(id);
-                if (!select) return;
+                if (!select) {
+                    console.error('Elemento não encontrado:', id);
+                    return;
+                }
+
+                // Limpa opções existentes (exceto a primeira)
+                while (select.children.length > 1) {
+                    select.removeChild(select.lastChild);
+                }
 
                 dados.forEach(item => {
                     const option = document.createElement('option');
@@ -536,24 +548,32 @@
                 const select = document.getElementById('ano-filtro');
                 if (!select) return;
 
-                // Vamos definir o ano máximo como 2026 para garantir que apareça
-                const anoMaximo = 2026;
+                // Sempre inclui pelo menos 2 anos no futuro
                 const anoAtual = new Date().getFullYear();
-                // Usar o maior entre o ano atual e 2026
-                const anoInicial = Math.max(anoAtual, anoMaximo);
-
-                for (let ano = anoInicial; ano >= 2000; ano--) {
+                const anoMaximo = Math.max(anoAtual + 2, 2026); // Garante que 2026 aparece
+                
+                // Limpa opções existentes (exceto a primeira)
+                while (select.children.length > 1) {
+                    select.removeChild(select.lastChild);
+                }
+                
+                for (let ano = anoMaximo; ano >= 2000; ano--) {
                     const option = document.createElement('option');
                     option.value = ano;
                     option.textContent = ano;
                     select.appendChild(option);
                 }
+                
+                console.log('Anos carregados: até', anoMaximo);
             }
 
             // Carregar conteúdo na página
             carregarConteudo() {
                 const conteudoPrincipal = document.getElementById('conteudo-principal');
-                if (!conteudoPrincipal) return;
+                if (!conteudoPrincipal) {
+                    console.error('Elemento conteudo-principal não encontrado');
+                    return;
+                }
 
                 const materiaisFiltrados = this.filtrarMateriais();
                 
@@ -575,14 +595,14 @@
 
             // Filtrar materiais
             filtrarMateriais() {
-                const instituicao = document.getElementById('instituicao-filtro').value;
-                const tipo = document.getElementById('tipo-filtro').value;
-                const ano = document.getElementById('ano-filtro').value;
+                const instituicao = document.getElementById('instituicao-filtro')?.value || 'todos';
+                const tipo = document.getElementById('tipo-filtro')?.value || 'todos';
+                const ano = document.getElementById('ano-filtro')?.value || 'todos';
 
                 return this.materiais.filter(material => {
                     if (instituicao !== 'todos' && material.instituicao !== instituicao) return false;
                     if (tipo !== 'todos' && material.tipo !== tipo) return false;
-                    if (ano !== 'todos' && material.ano !== ano) return false;
+                    if (ano !== 'todos' && material.ano.toString() !== ano) return false;
                     return true;
                 });
             }
@@ -621,6 +641,10 @@
                 const instituicao = CONFIG.INSTITUICOES.find(inst => inst.sigla === item.instituicao);
                 const tipoInfo = CONFIG.TIPOS_CONTEUDO.find(t => t.valor === item.tipo);
                 
+                if (!instituicao) {
+                    console.warn('Instituição não encontrada:', item.instituicao);
+                }
+                
                 return `
                     <div class="exame-item">
                         <div class="exame-info">
@@ -629,7 +653,7 @@
                                 ${item.titulo}
                             </div>
                             <div class="exame-meta">
-                                <span><i class="fas fa-university"></i> ${instituicao.nome}</span>
+                                <span><i class="fas fa-university"></i> ${instituicao?.nome || item.instituicao}</span>
                                 <span><i class="fas fa-calendar-alt"></i> ${item.ano}</span>
                                 <span><i class="fas fa-tag"></i> ${tipoInfo.texto}</span>
                                 ${item.disciplina ? `<span><i class="fas fa-book"></i> ${item.disciplina}</span>` : ''}
@@ -664,7 +688,10 @@
             // Estatísticas
             inicializarEstatisticas() {
                 const container = document.getElementById('estatisticas');
-                if (!container) return;
+                if (!container) {
+                    console.error('Elemento estatisticas não encontrado');
+                    return;
+                }
 
                 const stats = this.calcularEstatisticas();
                 container.innerHTML = this.criarHTMLEstatisticas(stats);
@@ -731,8 +758,12 @@
 
             // Utilitários
             formatarData(dataString) {
-                const data = new Date(dataString);
-                return data.toLocaleDateString('pt-PT');
+                try {
+                    const data = new Date(dataString);
+                    return data.toLocaleDateString('pt-PT');
+                } catch (e) {
+                    return dataString;
+                }
             }
 
             mostrarLoading() {
@@ -745,19 +776,38 @@
                 if (loading) loading.style.display = 'none';
             }
 
+            mostrarErro(mensagem) {
+                const conteudoPrincipal = document.getElementById('conteudo-principal');
+                if (conteudoPrincipal) {
+                    conteudoPrincipal.innerHTML = `
+                        <div class="sem-resultados">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Erro ao carregar</h3>
+                            <p>${mensagem}</p>
+                        </div>
+                    `;
+                }
+            }
+
             // Event Listeners
             adicionarEventListeners() {
                 const filtros = ['instituicao-filtro', 'tipo-filtro', 'ano-filtro'];
                 filtros.forEach(id => {
-                    document.getElementById(id).addEventListener('change', () => {
-                        this.carregarConteudo();
-                        this.inicializarEstatisticas();
-                    });
+                    const elemento = document.getElementById(id);
+                    if (elemento) {
+                        elemento.addEventListener('change', () => {
+                            this.carregarConteudo();
+                            this.inicializarEstatisticas();
+                        });
+                    }
                 });
 
-                document.getElementById('btn-limpar').addEventListener('click', () => {
-                    this.limparFiltros();
-                });
+                const btnLimpar = document.getElementById('btn-limpar');
+                if (btnLimpar) {
+                    btnLimpar.addEventListener('click', () => {
+                        this.limparFiltros();
+                    });
+                }
             }
 
             limparFiltros() {
@@ -768,19 +818,20 @@
                 this.inicializarEstatisticas();
             }
 
-            // Registrar interações (opcional - para estatísticas locais)
+            // Registrar interações
             registrarDownload(id) {
                 const material = this.materiais.find(m => m.id === id);
                 if (material) {
                     material.downloads = (material.downloads || 0) + 1;
-                    // Aqui você pode salvar as estatísticas localmente se quiser
-                    localStorage.setItem('arquivo_stats', JSON.stringify(this.materiais));
+                    console.log(`Download registrado para: ${material.titulo}`);
                 }
             }
         }
 
-        // Inicializar o sistema
-        const arquivoAcademico = new ArquivoAcademico();
+        // Inicializar o sistema quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            window.arquivoAcademico = new ArquivoAcademico();
+        });
     </script>
 
     <!-- ✅ Font Awesome -->
