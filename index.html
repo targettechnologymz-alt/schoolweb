@@ -25,20 +25,333 @@
 
     <!-- ✅ Estilos -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- ✅ Configurações -->
-    <script src="config.js"></script>
+    <style>
+        /* Estilos básicos para funcionamento */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .estatisticas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .estatistica-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .estatistica-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .estatistica-numero {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .estatistica-texto {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .filtros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            align-items: end;
+        }
+
+        .filtro-grupo {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filtro-grupo label {
+            font-weight: 600;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filtro-grupo select {
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .filtro-grupo select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn-limpar {
+            padding: 12px 24px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-limpar:hover {
+            background: #c0392b;
+        }
+
+        .secao-conteudo {
+            margin: 2rem 0;
+        }
+
+        .secao-conteudo h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .lista-conteudo {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .exame-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .exame-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .exame-info {
+            flex: 1;
+        }
+
+        .exame-titulo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .exame-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .exame-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .exame-acoes {
+            flex-shrink: 0;
+        }
+
+        .btn-download {
+            padding: 10px 20px;
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-download:hover {
+            background: #219653;
+        }
+
+        .btn-video {
+            background: #3498db;
+        }
+
+        .btn-video:hover {
+            background: #2980b9;
+        }
+
+        .sem-resultados {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .sem-resultados i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            display: none;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+        }
+
+        .assinatura {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .adsense-placeholder {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .exame-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .exame-acoes {
+                align-self: stretch;
+            }
+            
+            .btn-download {
+                justify-content: center;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .filtros {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Área invisível para acesso admin (topo direito da tela) -->
-    <div id="secret-admin-trigger" style="position: fixed; top: 0; right: 0; width: 50px; height: 50px; background: transparent; z-index: 9999; cursor: pointer;"></div>
-
     <header>
         <div class="header-content">
-            <i class="fas fa-graduation-cap"></i><h1>ARQUIVO ACADÊMICO CENTRAL</h1>
+            <i class="fas fa-graduation-cap"></i>
+            <h1>ARQUIVO ACADÊMICO CENTRAL</h1>
             <p>Exames, Editais, Notícias e Materiais das Universidades de Moçambique</p>
         </div>
     </header>
@@ -56,7 +369,9 @@
         </div>
 
         <!-- Estatísticas -->
-        <section class="estatisticas" id="estatisticas"></section>
+        <section class="estatisticas" id="estatisticas">
+            <!-- Carregado dinamicamente -->
+        </section>
 
         <!-- Filtros -->
         <section class="filtros">
@@ -93,7 +408,9 @@
         </div>
 
         <!-- Conteúdo Principal -->
-        <main id="conteudo-principal"></main>
+        <main id="conteudo-principal">
+            <!-- Carregado dinamicamente -->
+        </main>
         
         <!-- 🟢 Anúncio no meio -->
         <div class="adsense-placeholder">
@@ -110,8 +427,7 @@
         <footer>
             <p>Arquivo Acadêmico Central &copy; 2024 - Todos os direitos reservados</p>
             <div class="assinatura">
-                <i class="fas fa-code"></i>
-                <span>Criado por <strong>Maroon Technology</strong></span>
+                <p>Criado por Target Technology</p>
             </div>
 
             <!-- 🟢 Anúncio Rodapé -->
@@ -127,70 +443,339 @@
         </footer>
     </div>
 
-    <!-- Modal Login Seguro (Oculto) -->
-    <div id="secure-login-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-shield-alt"></i> Verificação de Segurança</h3>
-                <button class="btn-fechar" onclick="secureAuth.fecharLoginSeguro()">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="secure-access-code">Código de Acesso:</label>
-                    <input type="password" id="secure-access-code" class="form-input" 
-                           placeholder="Digite o código de acesso seguro" autocomplete="off">
-                </div>
-                <div class="form-group">
-                    <label for="secure-token">Token de Verificação:</label>
-                    <input type="text" id="secure-token" class="form-input" 
-                           placeholder="Token gerado automaticamente" readonly
-                           style="background: #f8f9fa; font-family: monospace;">
-                </div>
-                <div class="security-info">
-                    <p><i class="fas fa-info-circle"></i> <span id="attempts-counter">Tentativas restantes: 3</span></p>
-                </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" onclick="secureAuth.fecharLoginSeguro()">
-                        <i class="fas fa-times"></i> Cancelar
-                    </button>
-                    <button class="btn btn-primary" onclick="secureAuth.verificarAcessoSeguro()">
-                        <i class="fas fa-key"></i> Verificar Acesso
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Admin -->
-    <div class="modal" id="admin-modal">
-        <div class="modal-content admin-modal-large">
-            <div class="modal-header">
-                <h3><i class="fas fa-plus-circle"></i> Adicionar Conteúdo</h3>
-                <div class="admin-controls">
-                    <button class="btn btn-sm btn-warning" onclick="secureAuth.fazerLogout()">
-                        <i class="fas fa-sign-out-alt"></i> Sair
-                    </button>
-                    <button class="btn-fechar" onclick="adminInterface.fechar()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="modal-body">
-                <!-- Conteúdo do admin será carregado aqui pelo admin.js -->
-            </div>
-        </div>
-    </div>
-
     <!-- ✅ Scripts -->
-    <script src="js/auth.js"></script>
-    <script src="js/security.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/filtros.js"></script>
-    <script src="js/estatisticas.js"></script>
-    <script src="js/admin.js"></script>
-    <script src="js/upload.js"></script>
+    <script>
+        // Configurações e dados
+        const CONFIG = {
+            DATA_URL: 'data/materiais.json',
+            INSTITUICOES: [
+                { sigla: 'UEM', nome: 'Universidade Eduardo Mondlane' },
+                { sigla: 'UJC', nome: 'Universidade Joaquim Chissano' },
+                { sigla: 'UniLicungo', nome: 'Universidade Licungo' },
+                { sigla: 'UniLúrio', nome: 'Universidade Lúrio' },
+                { sigla: 'UniMaputo', nome: 'Universidade Maputo' },
+                { sigla: 'UniPúnguè', nome: 'Universidade Púnguè' },
+                { sigla: 'UniRovuma', nome: 'Universidade Rovuma' },
+                { sigla: 'UniSave', nome: 'Universidade Save' },
+                { sigla: 'UniZambeze', nome: 'Universidade Zambeze' },
+                { sigla: 'ESCN', nome: 'Escola Superior de Ciências Naúticas' },
+                { sigla: 'ESJ', nome: 'Escola Superior de Jornalismo' },
+                { sigla: 'ISArC', nome: 'Instituto Superior de Artes e Cultura' },
+                { sigla: 'ISCISA', nome: 'Instituto Superior de Ciências de Saúde' },
+                { sigla: 'ISCAM', nome: 'Instituto Superior de Contabilidade e Auditoria' },
+                { sigla: 'ISPG', nome: 'Instituto Superior Politécnico de Gaza' },
+                { sigla: 'ISPM', nome: 'Instituto Superior Politécnico de Manica' },
+                { sigla: 'ISPS', nome: 'Instituto Superior Politécnico de Songo' },
+                { sigla: 'ISPT', nome: 'Instituto Superior Politécnico de Tete' },
+                { sigla: 'ACIPOL', nome: 'Academia de Ciências Policiais' },
+                { sigla: 'AMMSM', nome: 'Academia Militar Marechal Samora Machel' },
+                { sigla: 'ISEDF', nome: 'Instituto Superior de Estudos de Defesa' }
+            ],
+            TIPOS_CONTEUDO: [
+                { valor: 'exame', texto: 'Exame', icone: 'fa-file-pdf' },
+                { valor: 'edital', texto: 'Edital', icone: 'fa-bullhorn' },
+                { valor: 'noticia', texto: 'Notícia', icone: 'fa-newspaper' },
+                { valor: 'manual', texto: 'Manual', icone: 'fa-book' },
+                { valor: 'resumo', texto: 'Resumo', icone: 'fa-file-alt' }
+            ]
+        };
+
+        // Sistema Principal
+        class ArquivoAcademico {
+            constructor() {
+                this.materiais = [];
+                this.init();
+            }
+
+            async init() {
+                await this.carregarDados();
+                this.inicializarFiltros();
+                this.carregarConteudo();
+                this.inicializarEstatisticas();
+                this.adicionarEventListeners();
+            }
+
+            // Carregar dados do JSON
+            async carregarDados() {
+                try {
+                    this.mostrarLoading();
+                    const response = await fetch(CONFIG.DATA_URL);
+                    this.materiais = await response.json();
+                    this.esconderLoading();
+                } catch (error) {
+                    console.error('Erro ao carregar dados:', error);
+                    this.materiais = [];
+                    this.esconderLoading();
+                }
+            }
+
+            // Inicializar filtros
+            inicializarFiltros() {
+                this.popularSelect('instituicao-filtro', CONFIG.INSTITUICOES, 'sigla', 'nome');
+                this.popularSelect('tipo-filtro', CONFIG.TIPOS_CONTEUDO, 'valor', 'texto');
+                this.popularAnos();
+            }
+
+            popularSelect(id, dados, valorKey, textoKey) {
+                const select = document.getElementById(id);
+                if (!select) return;
+
+                dados.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item[valorKey];
+                    option.textContent = item[textoKey];
+                    select.appendChild(option);
+                });
+            }
+
+            popularAnos() {
+                const select = document.getElementById('ano-filtro');
+                if (!select) return;
+
+                const anoAtual = new Date().getFullYear();
+                for (let ano = anoAtual; ano >= 2000; ano--) {
+                    const option = document.createElement('option');
+                    option.value = ano;
+                    option.textContent = ano;
+                    select.appendChild(option);
+                }
+            }
+
+            // Carregar conteúdo na página
+            carregarConteudo() {
+                const conteudoPrincipal = document.getElementById('conteudo-principal');
+                if (!conteudoPrincipal) return;
+
+                const materiaisFiltrados = this.filtrarMateriais();
+                
+                if (materiaisFiltrados.length === 0) {
+                    conteudoPrincipal.innerHTML = this.criarMensagemSemResultados();
+                    return;
+                }
+
+                const materiaisPorTipo = this.agruparMateriaisPorTipo(materiaisFiltrados);
+                conteudoPrincipal.innerHTML = '';
+
+                Object.keys(materiaisPorTipo).forEach(tipo => {
+                    if (materiaisPorTipo[tipo].length > 0) {
+                        const secao = this.criarSecao(tipo, materiaisPorTipo[tipo]);
+                        conteudoPrincipal.appendChild(secao);
+                    }
+                });
+            }
+
+            // Filtrar materiais
+            filtrarMateriais() {
+                const instituicao = document.getElementById('instituicao-filtro').value;
+                const tipo = document.getElementById('tipo-filtro').value;
+                const ano = document.getElementById('ano-filtro').value;
+
+                return this.materiais.filter(material => {
+                    if (instituicao !== 'todos' && material.instituicao !== instituicao) return false;
+                    if (tipo !== 'todos' && material.tipo !== tipo) return false;
+                    if (ano !== 'todos' && material.ano !== ano) return false;
+                    return true;
+                });
+            }
+
+            // Agrupar por tipo
+            agruparMateriaisPorTipo(materiais) {
+                const agrupados = {};
+                
+                CONFIG.TIPOS_CONTEUDO.forEach(tipo => {
+                    agrupados[tipo.valor] = materiais.filter(m => m.tipo === tipo.valor);
+                });
+                
+                return agrupados;
+            }
+
+            // Criar seção
+            criarSecao(tipo, itens) {
+                const secao = document.createElement('section');
+                secao.className = 'secao-conteudo';
+                
+                const tipoInfo = CONFIG.TIPOS_CONTEUDO.find(t => t.valor === tipo);
+                const tituloSecao = document.createElement('h2');
+                tituloSecao.innerHTML = `<i class="fas ${tipoInfo.icone}"></i> ${tipoInfo.texto} (${itens.length})`;
+                secao.appendChild(tituloSecao);
+                
+                const listaContainer = document.createElement('div');
+                listaContainer.className = 'lista-conteudo';
+                listaContainer.innerHTML = itens.map(item => this.criarItemHTML(item)).join('');
+                
+                secao.appendChild(listaContainer);
+                return secao;
+            }
+
+            // Criar item HTML
+            criarItemHTML(item) {
+                const instituicao = CONFIG.INSTITUICOES.find(inst => inst.sigla === item.instituicao);
+                const tipoInfo = CONFIG.TIPOS_CONTEUDO.find(t => t.valor === item.tipo);
+                
+                return `
+                    <div class="exame-item">
+                        <div class="exame-info">
+                            <div class="exame-titulo">
+                                <i class="fas ${tipoInfo.icone}"></i>
+                                ${item.titulo}
+                            </div>
+                            <div class="exame-meta">
+                                <span><i class="fas fa-university"></i> ${instituicao.nome}</span>
+                                <span><i class="fas fa-calendar-alt"></i> ${item.ano}</span>
+                                <span><i class="fas fa-tag"></i> ${tipoInfo.texto}</span>
+                                ${item.disciplina ? `<span><i class="fas fa-book"></i> ${item.disciplina}</span>` : ''}
+                            </div>
+                            ${item.descricao ? `<p style="margin-top: 10px; color: #666; font-size: 0.9rem;">${item.descricao}</p>` : ''}
+                            <div class="exame-meta">
+                                <span><i class="fas fa-eye"></i> ${item.visualizacoes || 0} visualizações</span>
+                                ${item.downloads ? `<span><i class="fas fa-download"></i> ${item.downloads} downloads</span>` : ''}
+                                <span><i class="fas fa-calendar"></i> ${this.formatarData(item.dataPublicacao)}</span>
+                            </div>
+                        </div>
+                        <div class="exame-acoes">
+                            <a href="${item.url}" target="_blank" class="btn-download" onclick="arquivoAcademico.registrarDownload(${item.id})">
+                                <i class="fas fa-download"></i> Baixar PDF
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Mensagem sem resultados
+            criarMensagemSemResultados() {
+                return `
+                    <div class="sem-resultados">
+                        <i class="fas fa-search"></i>
+                        <h3>Nenhum conteúdo encontrado</h3>
+                        <p>Tente ajustar os filtros para ver mais resultados.</p>
+                    </div>
+                `;
+            }
+
+            // Estatísticas
+            inicializarEstatisticas() {
+                const container = document.getElementById('estatisticas');
+                if (!container) return;
+
+                const stats = this.calcularEstatisticas();
+                container.innerHTML = this.criarHTMLEstatisticas(stats);
+                this.animarEstatisticas(stats);
+            }
+
+            calcularEstatisticas() {
+                const totalDocumentos = this.materiais.length;
+                const instituicoesUnicas = new Set(this.materiais.map(m => m.instituicao)).size;
+                const totalVisualizacoes = this.materiais.reduce((acc, m) => acc + (m.visualizacoes || 0), 0);
+                const totalDownloads = this.materiais.reduce((acc, m) => acc + (m.downloads || 0), 0);
+                
+                return {
+                    totalDocumentos,
+                    totalInstituicoes: instituicoesUnicas,
+                    totalVisualizacoes,
+                    totalDownloads
+                };
+            }
+
+            criarHTMLEstatisticas(stats) {
+                return `
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="estatistica-documentos">0</div>
+                        <div class="estatistica-texto">Documentos Disponíveis</div>
+                    </div>
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="estatistica-instituicoes">0</div>
+                        <div class="estatistica-texto">Instituições</div>
+                    </div>
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="estatistica-visualizacoes">0</div>
+                        <div class="estatistica-texto">Visualizações</div>
+                    </div>
+                    <div class="estatistica-item">
+                        <div class="estatistica-numero" id="estatistica-downloads">0</div>
+                        <div class="estatistica-texto">Downloads</div>
+                    </div>
+                `;
+            }
+
+            animarEstatisticas(stats) {
+                this.animarNumero('estatistica-documentos', stats.totalDocumentos);
+                this.animarNumero('estatistica-instituicoes', stats.totalInstituicoes);
+                this.animarNumero('estatistica-visualizacoes', stats.totalVisualizacoes);
+                this.animarNumero('estatistica-downloads', stats.totalDownloads);
+            }
+
+            animarNumero(id, valorFinal) {
+                const elemento = document.getElementById(id);
+                if (!elemento) return;
+
+                let contador = 0;
+                const incremento = Math.ceil(valorFinal / 50);
+                const intervalo = setInterval(() => {
+                    contador += incremento;
+                    if (contador >= valorFinal) {
+                        contador = valorFinal;
+                        clearInterval(intervalo);
+                    }
+                    elemento.textContent = contador.toLocaleString('pt-PT');
+                }, 30);
+            }
+
+            // Utilitários
+            formatarData(dataString) {
+                const data = new Date(dataString);
+                return data.toLocaleDateString('pt-PT');
+            }
+
+            mostrarLoading() {
+                const loading = document.getElementById('loading');
+                if (loading) loading.style.display = 'block';
+            }
+
+            esconderLoading() {
+                const loading = document.getElementById('loading');
+                if (loading) loading.style.display = 'none';
+            }
+
+            // Event Listeners
+            adicionarEventListeners() {
+                const filtros = ['instituicao-filtro', 'tipo-filtro', 'ano-filtro'];
+                filtros.forEach(id => {
+                    document.getElementById(id).addEventListener('change', () => {
+                        this.carregarConteudo();
+                        this.inicializarEstatisticas();
+                    });
+                });
+
+                document.getElementById('btn-limpar').addEventListener('click', () => {
+                    this.limparFiltros();
+                });
+            }
+
+            limparFiltros() {
+                document.getElementById('instituicao-filtro').value = 'todos';
+                document.getElementById('tipo-filtro').value = 'todos';
+                document.getElementById('ano-filtro').value = 'todos';
+                this.carregarConteudo();
+                this.inicializarEstatisticas();
+            }
+
+            // Registrar interações (opcional - para estatísticas locais)
+            registrarDownload(id) {
+                const material = this.materiais.find(m => m.id === id);
+                if (material) {
+                    material.downloads = (material.downloads || 0) + 1;
+                    // Aqui você pode salvar as estatísticas localmente se quiser
+                    localStorage.setItem('arquivo_stats', JSON.stringify(this.materiais));
+                }
+            }
+        }
+
+        // Inicializar o sistema
+        const arquivoAcademico = new ArquivoAcademico();
+    </script>
+
+    <!-- ✅ Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
     <!-- ✅ Schema SEO -->
     <script type="application/ld+json">
@@ -203,8 +788,5 @@
         "founder": "Maroon Technology"
     }
     </script>
-
-    <!-- ✅ Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </body>
 </html>

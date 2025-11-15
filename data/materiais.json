@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "titulo": "Exame de Matemática - Final 2024",
+    "instituicao": "UEM",
+    "tipo": "exame",
+    "disciplina": "Matemática",
+    "ano": "2024",
+    "descricao": "Exame final de matemática da Universidade Eduardo Mondlane",
+    "url": "https://drive.google.com/uc?export=download&id=SEU_ID_AQUI",
+    "dataPublicacao": "2024-01-15",
+    "visualizacoes": 125,
+    "downloads": 89
+  },
+  {
+    "id": 2,
+    "titulo": "Edital de Inscrição - 2º Semestre 2024",
+    "instituicao": "UJC",
+    "tipo": "edital",
+    "disciplina": "Geral",
+    "ano": "2024",
+    "descricao": "Edital de inscrições para o segundo semestre de 2024",
+    "url": "https://drive.google.com/uc?export=download&id=OUTRO_ID_AQUI",
+    "dataPublicacao": "2024-01-10",
+    "visualizacoes": 210,
+    "downloads": 0
+  },
+  {
+    "id": 3,
+    "titulo": "Manual de Física - Mecânica Clássica",
+    "instituicao": "UniLúrio",
+    "tipo": "manual",
+    "disciplina": "Física",
+    "ano": "2023",
+    "descricao": "Manual completo de mecânica clássica para estudantes universitários",
+    "url": "https://drive.google.com/uc?export=download&id=TERCEIRO_ID",
+    "dataPublicacao": "2024-01-20",
+    "visualizacoes": 89,
+    "downloads": 45
+  }
+]

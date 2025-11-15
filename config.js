@@ -1,25 +1,35 @@
-// Configurações Ultra-Seguras
-const CONFIG = {
-    // Sistema de Autenticação Oculto
-    ACCESS_CODE: "qwerqwer2025", // CÓDIGO MESTRE - ALTERE ESTA SENHA!
-    ADMIN_HASH: "d1775f67d3354030198fc2311f3dec8c1fc8326d9200fa58eee653776bf4d555", // hash SHA256 de "admin"
-    SESSION_TIMEOUT: 15 * 60 * 1000, // 15 minutos de sessão
-    
-    // Google AdSense
-    ADSENSE_CLIENT: "ca-pub-1816282885500573",
-    
-    // Configurações do site
-    SITE_NAME: "Arquivo Acadêmico Central",
-    SITE_DESCRIPTION: "Portal educacional com exames, editais e materiais para universidades de Moçambique",
-    VERSION: "4.0.0",
-    
-    // Sistema de acesso secreto
-    SECRET_PATTERN: "ACADEMICO_MOZ", // Padrão secreto para acesso
-    HIDDEN_KEY_SEQUENCE: ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "KeyB", "KeyA"], // Código Konami
-    SECRET_CLICK_ZONE: "secret-admin-trigger" // ID da área de clique secreto
+// Configurações Ofuscadas - SEGURANÇA MÁXIMA
+const _0x1a2b3c = {
+    'x1y2z3': function(_0xabc, _0xdef) {
+        return _0xabc + _0xdef;
+    },
+    'p4q5r6': 'd1775f67d3354030198fc2311f3dec8c1fc8326d9200fa58eee653776bf4d555',
+    's7t8u9': 'ARQUIVO_ACADEMICO_CENTRAL_2024_SECRETO',
+    'v0w1x2': 15 * 60 * 1000,
+    'y3z4a5': 'ca-pub-1816282885500573',
+    'b6c7d8': 'Arquivo Acadêmico Central',
+    'e9f0g1': 'Portal educacional com exames, editais e materiais',
+    'h2i3j4': '4.1.0',
+    'k5l6m7': 'ACADEMICO_MOZ_2024_SECRETO',
+    'n8o9p0': ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "KeyB", "KeyA"],
+    'q1r2s3': 'secret-admin-trigger'
 };
 
-// Dados das Instituições
+// CONFIG Ofuscada
+const CONFIG = {
+    PASSWORD_HASH: _0x1a2b3c['p4q5r6'],
+    SALT: _0x1a2b3c['s7t8u9'],
+    SESSION_TIMEOUT: _0x1a2b3c['v0w1x2'],
+    ADSENSE_CLIENT: _0x1a2b3c['y3z4a5'],
+    SITE_NAME: _0x1a2b3c['b6c7d8'],
+    SITE_DESCRIPTION: _0x1a2b3c['e9f0g1'],
+    VERSION: _0x1a2b3c['h2i3j4'],
+    SECRET_PATTERN: _0x1a2b3c['k5l6m7'],
+    HIDDEN_KEY_SEQUENCE: _0x1a2b3c['n8o9p0'],
+    SECRET_CLICK_ZONE: _0x1a2b3c['q1r2s3']
+};
+
+// Dados das Instituições (não ofuscar - dados públicos)
 const INSTITUICOES = [
     { sigla: 'UEM', nome: 'Universidade Eduardo Mondlane' },
     { sigla: 'UJC', nome: 'Universidade Joaquim Chissano' },
